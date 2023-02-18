@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'fetcher.dart';
 
-var url = "http://192.168.178.61:1312";
+var url = "http://192.168.178.32:1312";
 
 class ProductView extends StatefulWidget {
   const ProductView({
@@ -28,6 +28,7 @@ class _ProductViewState extends State<ProductView> {
           child: ProductEntry(
             allergenics: fetchProductInfo(productIDs[index], url)[5],
             prize: fetchProductInfo(productIDs[index], url)[2],
+            sale: fetchProductInfo(productIDs[index], url)[6],
             description: fetchProductInfo(productIDs[index], url)[7],
             imageUrl: fetchProductInfo(productIDs[index], url)[4],
             title: fetchProductInfo(productIDs[index], url)[1],
@@ -38,9 +39,11 @@ class _ProductViewState extends State<ProductView> {
                 builder: (context) => ProductInfo(
                       allergenics: fetchProductInfo(productIDs[index], url)[5],
                       prize: fetchProductInfo(productIDs[index], url)[2],
+                      sale: fetchProductInfo(productIDs[index], url)[6],
                       description: fetchProductInfo(productIDs[index], url)[7],
                       imageUrl: fetchProductInfo(productIDs[index], url)[4],
                       title: fetchProductInfo(productIDs[index], url)[1],
+                      calories: fetchProductInfo(productIDs[index], url)[3],
                     )),
           ),
           splashColor: Colors.transparent,

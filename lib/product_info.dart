@@ -6,12 +6,16 @@ class ProductInfo extends StatelessWidget {
   final String description;
   final String imageUrl;
   final String allergenics;
+  final String sale;
+  final String calories;
   ProductInfo(
       {required this.title,
       required this.prize,
       required this.allergenics,
       required this.description,
-      required this.imageUrl});
+      required this.imageUrl,
+      required this.sale,
+      required this.calories});
 
   @override
   Widget build(BuildContext context) {
@@ -68,15 +72,61 @@ class ProductInfo extends StatelessWidget {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.all(13.0),
-                child: Text(
-                  overflow: TextOverflow.ellipsis,
-                  prize.replaceAll(" ", ""),
-                  style: const TextStyle(
-                      fontSize: 19, fontWeight: FontWeight.bold),
-                ),
+                child: sale.replaceAll(" ", "") == "nv"
+                    ? Text(
+                        prize.replaceAll(" ", ""),
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontSize: 21, fontWeight: FontWeight.bold),
+                      )
+                    : RichText(
+                        text: new TextSpan(
+                          // Note: Styles for TextSpans must be explicitly defined.
+                          // Child text spans will inherit styles from parent
+                          style: new TextStyle(
+                              fontSize: 21.0,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.lineThrough),
+                          children: <TextSpan>[
+                            new TextSpan(text: prize),
+                            new TextSpan(
+                                text: sale,
+                                style: new TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    decoration: TextDecoration.none,
+                                    fontSize: 21,
+                                    color: Colors.green)),
+                          ],
+                        ),
+                      ),
               ),
             ],
-          )
+          ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 13, left: 13),
+              child: RichText(
+                text: new TextSpan(
+                  // Note: Styles for TextSpans must be explicitly defined.
+                  // Child text spans will inherit styles from parent
+                  style: new TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.orange,
+                      fontWeight: FontWeight.bold),
+                  children: <TextSpan>[
+                    new TextSpan(text: 'Energie:'),
+                    new TextSpan(
+                        text: "${calories}kcal",
+                        style: new TextStyle(
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black)),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -7,11 +7,14 @@ class ProductEntry extends StatefulWidget {
   final String description;
   final String imageUrl;
   final String allergenics;
+  final String sale;
+
   ProductEntry(
       {required this.title,
       required this.prize,
       required this.allergenics,
       required this.description,
+      required this.sale,
       required this.imageUrl});
 
   @override
@@ -68,12 +71,35 @@ class _ProductEntryState extends State<ProductEntry> {
                           Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(6.0),
-                            child: Text(
-                              overflow: TextOverflow.ellipsis,
-                              widget.prize.replaceAll(" ", ""),
-                              style: const TextStyle(
-                                  fontSize: 19, fontWeight: FontWeight.normal),
-                            ),
+                            child: widget.sale.replaceAll(" ", "") == "nv"
+                                ? Text(
+                                    widget.prize.replaceAll(" ", ""),
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.normal),
+                                  )
+                                : RichText(
+                                    text: new TextSpan(
+                                      // Note: Styles for TextSpans must be explicitly defined.
+                                      // Child text spans will inherit styles from parent
+                                      style: new TextStyle(
+                                          fontSize: 19.0,
+                                          color: Colors.red,
+                                          decoration:
+                                              TextDecoration.lineThrough),
+                                      children: <TextSpan>[
+                                        new TextSpan(text: widget.prize),
+                                        new TextSpan(
+                                            text: widget.sale,
+                                            style: new TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                decoration: TextDecoration.none,
+                                                fontSize: 19,
+                                                color: Colors.green)),
+                                      ],
+                                    ),
+                                  ),
                           ),
                         ],
                       ),
@@ -88,7 +114,7 @@ class _ProductEntryState extends State<ProductEntry> {
                             padding: const EdgeInsets.all(6.0),
                             child: new Text(
                               overflow: TextOverflow.ellipsis,
-                              "${UnWhiteSpace(widget.description).toString().length > 44 ? UnWhiteSpace(widget.description).toString().substring(0, 40) : UnWhiteSpace(widget.description)}...",
+                              "${UnWhiteSpace(widget.description).toString().length > 35 ? UnWhiteSpace(widget.description).toString().substring(0, 35) : UnWhiteSpace(widget.description)}...",
                               style: const TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.normal,
