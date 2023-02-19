@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:cafeminute/nots.dart';
+import 'package:cafeminute/API/nots.dart';
 import 'package:cafeminute/openview.dart';
 import 'package:cafeminute/product_view.dart';
 import 'package:flutter/material.dart';
 
-import 'initInventory.dart';
+import 'API/initInventory.dart';
 import 'main.dart';
 
 class Main extends StatefulWidget {
@@ -46,16 +46,4 @@ class _MainState extends State<Main> {
       ],
     );
   }
-}
-
-notify() async {
-  AwesomeNotifications().createNotification(
-      content: NotificationContent(
-          id: 10,
-          channelKey: 'basic_channel',
-          title: 'Simple Notification',
-          body: 'Simple body',
-          actionType: ActionType.Default),
-      schedule: NotificationCalendar.fromDate(
-          date: DateTime.now().add(const Duration(seconds: 100))));
 }
