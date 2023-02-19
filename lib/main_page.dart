@@ -84,7 +84,7 @@ class _MainState extends State<Main> {
                   )),
             )),
         SizedBox(
-          height: height * (0.65 - 0.075),
+          height: height * (0.65 - 0.077),
           width: width,
           child: ProductView(),
         ),
@@ -102,7 +102,7 @@ class SearchBar extends StatelessWidget {
 
   //@override
   //Widget build(BuildContext context) {
-    //return 
+    //return
   }
 }
 */

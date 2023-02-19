@@ -24,8 +24,14 @@ class Minute extends StatefulWidget {
 class _MinuteState extends State<Minute> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Material(child: Main()),
+    return GestureDetector(
+      onDoubleTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+        print("out");
+      },
+      child: MaterialApp(
+        home: Material(child: Main()),
+      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cafeminute/product_entry/product_entry.dart';
 import 'package:flutter/material.dart';
 
@@ -34,11 +35,15 @@ class EntryTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Text(
-        "${unWhiteSpace(widget.title)}",
-        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+    return SizedBox(
+      width: MediaQuery.of(context).size.width*0.4,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: AutoSizeText(
+          "${unWhiteSpace(widget.title)}",
+            maxLines: 2,
+          style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
