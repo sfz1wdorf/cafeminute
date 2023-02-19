@@ -18,6 +18,8 @@ class Main extends StatefulWidget {
   State<Main> createState() => _MainState();
 }
 
+final TextEditingController editingController = TextEditingController();
+
 class _MainState extends State<Main> {
   @override
   void initState() {
@@ -37,8 +39,52 @@ class _MainState extends State<Main> {
       children: [
         Spacer(),
         OpenView(),
+        Padding(
+            padding: const EdgeInsets.all(8),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      border: Border.all(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ]),
+                  height: MediaQuery.of(context).size.height * 0.057,
+                  child: SizedBox(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 0),
+                      child: TextField(
+                        controller: editingController,
+                        cursorColor: Colors.grey,
+                        style: TextStyle(fontSize: 20, color: Colors.grey),
+                        onChanged: (value) {
+                          productIDSorted = productIDSortedUpdate(
+                              productIDs, editingController.text);
+                          setState(() {});
+                        },
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: Colors.grey,
+                            ),
+                            hintText: "Suche",
+                            hintStyle: TextStyle(fontSize: 20),
+                            border: InputBorder.none),
+                      ),
+                    ),
+                  )),
+            )),
         SizedBox(
-          height: height * 0.65,
+          height: height * (0.65 - 0.075),
           width: width,
           child: ProductView(),
         ),
@@ -47,3 +93,16 @@ class _MainState extends State<Main> {
     );
   }
 }
+
+/*
+class SearchBar extends StatelessWidget {
+  const SearchBar({
+    super.key,
+  });
+
+  //@override
+  //Widget build(BuildContext context) {
+    //return 
+  }
+}
+*/
