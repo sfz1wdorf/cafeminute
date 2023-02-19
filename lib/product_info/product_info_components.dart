@@ -14,7 +14,7 @@ class InfoPrize extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(13.0),
-      child: sale.replaceAll(" ", "") == "nv"
+      child: sale.replaceAll(" ", "") != "nv"
           ? Text(
               prize.replaceAll(" ", ""),
               overflow: TextOverflow.ellipsis,

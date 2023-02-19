@@ -56,7 +56,7 @@ class EntryPrize extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(6.0),
-      child: widget.sale.replaceAll(" ", "") == "nv"
+      child: widget.sale.replaceAll(" ", "") != "nv"
           ? Text(
               widget.prize.replaceAll(" ", ""),
               overflow: TextOverflow.ellipsis,
