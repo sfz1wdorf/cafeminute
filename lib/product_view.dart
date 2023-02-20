@@ -111,14 +111,16 @@ List<String> productIDSortedUpdate(List<String> productids, String query) {
   List<String> sorted = [];
   productids.forEach((element) {
     print(fetchProductInfo(element, url)[0]);
-    if (fetchProductInfo(element, url)[0]
-        .contains(query.replaceAll(" ", "").toLowerCase())) {
-      if ((fetchProductInfo(element, url)[0]).replaceAll(" ", "")[0] ==
-          query.replaceAll(" ", "").toLowerCase()[0]) {
-        sorted.insert(0, element);
-        print("true for:" + fetchProductInfo(element, url)[0]);
-      } else {
-        sorted.add(element);
+    if (query != "") {
+      if (fetchProductInfo(element, url)[0]
+          .contains(query.replaceAll(" ", "").toLowerCase())) {
+        if ((fetchProductInfo(element, url)[0]).replaceAll(" ", "")[0] ==
+            query.replaceAll(" ", "").toLowerCase()[0]) {
+          sorted.insert(0, element);
+          print("true for:" + fetchProductInfo(element, url)[0]);
+        } else {
+          sorted.add(element);
+        }
       }
     }
   });

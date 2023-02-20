@@ -41,6 +41,8 @@ dependencies:
   easter_egg_trigger: ^1.0.1
   searchable_listview: ^2.2.1
   auto_size_text: ^3.0.0
+  animation_search_bar: ^0.0.10
+  anim_search_bar: ^2.0.3
 
 
 

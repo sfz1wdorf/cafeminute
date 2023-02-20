@@ -30,30 +30,47 @@ class _OpenViewState extends State<OpenView> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.35,
             fit: BoxFit.cover),
-        Align(
-            alignment: FractionalOffset.bottomLeft,
-            child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  isopen == null
-                      ? "..."
-                      : isopen == true
-                          ? "○ Geöffnet"
-                          : "○ Geschlossen",
-                  textScaleFactor: 1.7,
-                  style: TextStyle(
-                      color: isopen == null
-                          ? Colors.black
+        Row(
+          children: [
+            Align(
+                alignment: FractionalOffset.bottomLeft,
+                child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      isopen == null
+                          ? "..."
                           : isopen == true
-                              ? Colors.green
-                              : const Color.fromARGB(255, 255, 0, 0),
-                      fontWeight: FontWeight.w400),
-                ).frosted(
+                              ? "○ Geöffnet"
+                              : "○ Geschlossen",
+                      textScaleFactor: 1.7,
+                      style: TextStyle(
+                          color: isopen == null
+                              ? Colors.black
+                              : isopen == true
+                                  ? Colors.green
+                                  : const Color.fromARGB(255, 255, 0, 0),
+                          fontWeight: FontWeight.w400),
+                    ).frosted(
+                      blur: 15,
+                      borderRadius: BorderRadius.circular(10),
+                      padding:
+                          EdgeInsets.only(left: 6, right: 6, top: 2, bottom: 2),
+                    ))),
+            Spacer(),
+            GestureDetector(
+              onTap: () => debugPrint("coming soon"),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Icon(Icons.newspaper).frosted(
                   blur: 15,
                   borderRadius: BorderRadius.circular(10),
                   padding:
                       EdgeInsets.only(left: 6, right: 6, top: 2, bottom: 2),
-                ))),
+                ),
+              ),
+            )
+          ],
+        ),
       ]),
     );
   }

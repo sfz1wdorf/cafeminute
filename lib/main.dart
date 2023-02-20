@@ -35,11 +35,3 @@ class _MinuteState extends State<Minute> {
     );
   }
 }
-
-class NoScrollGlow extends ScrollBehavior {
-  @override
-  Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails details) {
-    return child;
-  }
-}
