@@ -9,7 +9,7 @@ class ProductEntry extends StatefulWidget {
   final String allergenics;
   final String sale;
 
-  ProductEntry(
+ ProductEntry(
       {required this.title,
       required this.prize,
       required this.allergenics,
@@ -54,7 +54,7 @@ class _ProductEntryState extends State<ProductEntry> {
                       child: Row(
                         children: [
                           EntryTitle(widget: widget),
-                          Spacer(),
+                          const Spacer(),
                           EntryPrize(widget: widget),
                         ],
                       ),
@@ -66,7 +66,7 @@ class _ProductEntryState extends State<ProductEntry> {
                       child: Row(
                         children: [
                           EntryDescription(widget: widget),
-                          Spacer(),
+                          const Spacer(),
                           EntryAllergenics(widget: widget)
                         ],
                       ),
