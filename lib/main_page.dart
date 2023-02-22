@@ -1,13 +1,9 @@
 import 'dart:async';
 
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:cafeminute/API/nots.dart';
 import 'package:cafeminute/openview.dart';
 import 'package:cafeminute/product_view.dart';
 import 'package:flutter/material.dart';
-
 import 'API/initInventory.dart';
-import 'main.dart';
 
 class Main extends StatefulWidget {
   const Main({
@@ -25,7 +21,7 @@ class _MainState extends State<Main> {
   void initState() {
     Timer RefreshTimer;
     //TODO rise Interval to higher number for production
-    RefreshTimer = Timer.periodic(Duration(seconds: 3), (Timer t) {
+    RefreshTimer = Timer.periodic(const Duration(seconds: 3), (Timer t) {
       init();
       setState(() {});
     });
@@ -37,7 +33,7 @@ class _MainState extends State<Main> {
     double height = MediaQuery.of(context).size.height;
     return Column(
       children: [
-        Spacer(),
+        const Spacer(),
         OpenView(),
         Padding(
             padding: const EdgeInsets.all(8),
@@ -71,7 +67,7 @@ class _MainState extends State<Main> {
                               productIDs, editingController.text);
                           setState(() {});
                         },
-                        decoration: InputDecoration(
+                        decoration:const InputDecoration(
                             prefixIcon: Icon(
                               Icons.search,
                               color: Colors.grey,
@@ -88,7 +84,7 @@ class _MainState extends State<Main> {
           width: width,
           child: ProductView(),
         ),
-        Spacer()
+        const Spacer()
       ],
     );
   }
