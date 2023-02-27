@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ProductEntry extends StatefulWidget {
+class NewsEntry extends StatefulWidget {
   final String title;
   final String prize;
   final String description;
@@ -8,7 +8,7 @@ class ProductEntry extends StatefulWidget {
   final String allergenics;
   final String sale;
 
- ProductEntry(
+ NewsEntry(
       {required this.title,
       required this.prize,
       required this.allergenics,
@@ -17,10 +17,10 @@ class ProductEntry extends StatefulWidget {
       required this.imageUrl});
 
   @override
-  State<ProductEntry> createState() => _ProductEntryState();
+  State<NewsEntry> createState() => _NewsEntryState();
 }
 
-class _ProductEntryState extends State<ProductEntry> {
+class _NewsEntryState extends State<NewsEntry> {
   @override
   Widget build(BuildContext context) {
     return Text("");}}
