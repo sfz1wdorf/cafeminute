@@ -1,4 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:cafeminute/API/initInventory.dart';
 import 'package:cafeminute/main_page.dart';
 import 'package:cafeminute/product_view.dart';
 import 'package:dio/dio.dart';
@@ -17,14 +18,25 @@ List<String> fetchProductInfo(String id, url) {
   }
   return productArray;
 }
-
+List<String> fetchNewsInfo(String id, url) {
+  var idsString = newsIDs;
+  var newsIndex = idsString.indexOf(id);
+  var newsArrayRaw = news.toString().split("|");
+  var singlenews = newsArrayRaw[newsIndex];
+  var productArrayRaw = singlenews.toString().split(";");
+  List<String> newsArray = [];
+  for (var i = 0; i < productArrayRaw.length - 1; i++) {
+    newsArray.add(productArrayRaw[i].toString().substring(7));
+  }
+  return newsArray;
+}
 Future<List<String>> fetchProductIDs(url) async {
   var idsString = await getHttp("$url/getproductids", "", "GET");
   var ids = idsString.toString().split(",");
   return ids;
 }
-Future<List<String>> fetchNews(url) async {
-  var idsString = await getHttp("$url/getallnews", "", "GET");
+Future<List<String>> fetchNewsIDs(url) async {
+  var idsString = await getHttp("$url/getnewsids", "", "GET");
   var ids = idsString.toString().split(",");
   return ids;
 }

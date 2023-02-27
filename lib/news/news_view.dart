@@ -1,5 +1,11 @@
 
+import 'package:cafeminute/API/initInventory.dart';
 import 'package:flutter/material.dart';
+
+import '../API/fetcher.dart';
+import '../product_entry/product_entry.dart';
+import '../product_info/product_info.dart';
+import '../product_view.dart';
 
 class NewsView extends StatefulWidget {
   const NewsView({super.key});
@@ -28,8 +34,22 @@ class _NewsViewState extends State<NewsView> {
         foregroundColor: Colors.black,
       ),
 
-      body: Center(
-        child: Center(child: Text("lol"),),
-        ),);
+      body: ListView.builder(
+            physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics()),
+            padding: EdgeInsets.all(0),
+            itemCount: productIDs.length,
+            itemBuilder: (context, index) {
+              return ProductEntry(
+                  allergenics: fetchProductInfo(productIDs[index], url)[5],
+                  prize: fetchProductInfo(productIDs[index], url)[2],
+                  sale: fetchProductInfo(productIDs[index], url)[6],
+                  description: fetchProductInfo(productIDs[index], url)[7],
+                  imageUrl: fetchProductInfo(productIDs[index], url)[4],
+                  title: fetchProductInfo(productIDs[index], url)[1],
+              );
+            },
+          )
+        );
   }
 }
