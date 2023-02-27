@@ -23,6 +23,12 @@ Future<List<String>> fetchProductIDs(url) async {
   var ids = idsString.toString().split(",");
   return ids;
 }
+Future<List<String>> fetchNews(url) async {
+  var idsString = await getHttp("$url/getallnews", "", "GET");
+  var ids = idsString.toString().split(",");
+  return ids;
+}
+
 
 getHttp(path, dataset, method) async {
   try {

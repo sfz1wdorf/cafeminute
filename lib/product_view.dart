@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'API/fetcher.dart';
 
-var url = "http://192.168.178.61:1312";
+var url = "http://172.20.231.213:1312";
 
 class ProductView extends StatefulWidget {
   const ProductView({
@@ -107,7 +107,7 @@ class _ProductViewState extends State<ProductView> {
 List<String> productIDs = [];
 var productIDSorted = [];
 
-List<String> productIDSortedUpdate(List<String> productids, String query) {
+List<String> productIDSortedUpdate_(List<String> productids, String query) {
   List<String> sorted = [];
   productids.forEach((element) {
     print(fetchProductInfo(element, url)[0]);
@@ -116,6 +116,26 @@ List<String> productIDSortedUpdate(List<String> productids, String query) {
           .contains(query.replaceAll(" ", "").toLowerCase())) {
         if ((fetchProductInfo(element, url)[0]).replaceAll(" ", "")[0] ==
             query.replaceAll(" ", "").toLowerCase()[0]) {
+          sorted.insert(0, element);
+          print("true for:" + fetchProductInfo(element, url)[0]);
+        } else {
+          sorted.add(element);
+        }
+      }
+    }
+  });
+  print(sorted);
+  return sorted;
+}
+List<String> productIDSortedUpdate(List<String> productids, String query) {
+  List<String> sorted = [];
+  productids.forEach((element) {
+    print(fetchProductInfo(element, url)[0]);
+    if (query != "") {
+      if (fetchProductInfo(element, url)[0]
+          .contains(query.replaceAll(" ", "").toLowerCase())) {
+        if ((fetchProductInfo(element, url)[0]).replaceAll(" ", "").substring(0, query.replaceAll(" ", "").toLowerCase().length) ==
+            query.replaceAll(" ", "").toLowerCase()) {
           sorted.insert(0, element);
           print("true for:" + fetchProductInfo(element, url)[0]);
         } else {

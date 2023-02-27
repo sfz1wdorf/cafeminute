@@ -1,3 +1,4 @@
+import 'package:cafeminute/news/news_view.dart';
 import 'package:easter_egg_trigger/easter_egg_trigger.dart';
 import 'package:flutter/material.dart';
 import 'package:blur/blur.dart';
@@ -58,7 +59,12 @@ class _OpenViewState extends State<OpenView> {
                     ))),
             Spacer(),
             GestureDetector(
-              onTap: () => debugPrint("coming soon"),
+              onTap: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const NewsView()),
+  );
+},
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Icon(Icons.newspaper).frosted(
