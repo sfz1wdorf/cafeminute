@@ -43,6 +43,7 @@ dependencies:
   auto_size_text: ^3.0.0
   animation_search_bar: ^0.0.10
   anim_search_bar: ^2.0.3
+  flutter_markdown: ^0.6.14
 
 
 

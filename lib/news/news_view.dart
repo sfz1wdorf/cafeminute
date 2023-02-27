@@ -1,5 +1,7 @@
 
 import 'package:cafeminute/API/initInventory.dart';
+import 'package:cafeminute/news/news_entry.dart';
+import 'package:cafeminute/news/news_info.dart';
 import 'package:flutter/material.dart';
 
 import '../API/fetcher.dart';
@@ -38,15 +40,28 @@ class _NewsViewState extends State<NewsView> {
             physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics()),
             padding: EdgeInsets.all(0),
-            itemCount: productIDs.length,
+            itemCount: newsIDs.length,
             itemBuilder: (context, index) {
-              return ProductEntry(
-                  allergenics: fetchProductInfo(productIDs[index], url)[5],
-                  prize: fetchProductInfo(productIDs[index], url)[2],
-                  sale: fetchProductInfo(productIDs[index], url)[6],
-                  description: fetchProductInfo(productIDs[index], url)[7],
-                  imageUrl: fetchProductInfo(productIDs[index], url)[4],
-                  title: fetchProductInfo(productIDs[index], url)[1],
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => NewsInfo(
+                    content: fetchNewsInfo(newsIDs[index], url)[0],
+                    contentRaw: fetchNewsInfo(newsIDs[index], url)[2],
+                    date: fetchNewsInfo(newsIDs[index], url)[4],
+                    heading: fetchNewsInfo(newsIDs[index], url)[1],
+                    imageUrl: fetchNewsInfo(newsIDs[index], url)[3],                
+                      )));
+                },
+                child: NewsEntry(
+                    content: fetchNewsInfo(newsIDs[index], url)[0],
+                    contentRaw: fetchNewsInfo(newsIDs[index], url)[2],
+                    date: fetchNewsInfo(newsIDs[index], url)[4],
+                    heading: fetchNewsInfo(newsIDs[index], url)[1],
+                    imageUrl: fetchNewsInfo(newsIDs[index], url)[3],
+                ),
               );
             },
           )

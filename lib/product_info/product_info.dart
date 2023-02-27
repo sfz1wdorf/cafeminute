@@ -68,18 +68,18 @@ class InfoCalories extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 13, left: 13),
         child: RichText(
-          text: new TextSpan(
+          text: TextSpan(
             // Note: Styles for TextSpans must be explicitly defined.
             // Child text spans will inherit styles from parent
-            style: new TextStyle(
+            style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.orange,
                 fontWeight: FontWeight.bold),
             children: <TextSpan>[
-              new TextSpan(text: 'Energie:'),
-              new TextSpan(
+              const TextSpan(text: 'Energie:'),
+               TextSpan(
                   text: "${calories}kcal",
-                  style: new TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.normal, color: Colors.black)),
             ],
           ),

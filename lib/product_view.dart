@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'API/fetcher.dart';
 
-var url = "http://172.20.231.213:1312";
+var url = "http://localhost:1312";
 
 class ProductView extends StatefulWidget {
   const ProductView({
