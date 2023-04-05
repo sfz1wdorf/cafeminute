@@ -49,18 +49,18 @@ class _NewsViewState extends State<NewsView> {
                   MaterialPageRoute(
                       builder: (context) => NewsInfo(
                     content: fetchNewsInfo(newsIDs[index], url)[0],
-                    contentRaw: fetchNewsInfo(newsIDs[index], url)[2],
-                    date: fetchNewsInfo(newsIDs[index], url)[4],
-                    heading: fetchNewsInfo(newsIDs[index], url)[1],
-                    imageUrl: fetchNewsInfo(newsIDs[index], url)[3],                
+                    contentRaw: fetchNewsInfo(newsIDs[index], url)[1],
+                    date: fetchNewsInfo(newsIDs[index], url)[2],
+                    heading: fetchNewsInfo(newsIDs[index], url)[3],
+                    imageUrl: fetchNewsInfo(newsIDs[index], url)[4],                
                       )));
                 },
                 child: NewsEntry(
                     content: fetchNewsInfo(newsIDs[index], url)[0],
-                    contentRaw: fetchNewsInfo(newsIDs[index], url)[2],
-                    date: fetchNewsInfo(newsIDs[index], url)[4],
-                    heading: fetchNewsInfo(newsIDs[index], url)[1],
-                    imageUrl: fetchNewsInfo(newsIDs[index], url)[3],
+                    contentRaw: fetchNewsInfo(newsIDs[index], url)[1],
+                    date: fetchNewsInfo(newsIDs[index], url)[2],
+                    heading: fetchNewsInfo(newsIDs[index], url)[3],
+                    imageUrl: fetchNewsInfo(newsIDs[index], url)[4],
                 ),
               );
             },

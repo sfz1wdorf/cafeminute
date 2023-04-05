@@ -27,7 +27,7 @@ class _OpenViewState extends State<OpenView> {
       ],
       child: Stack(alignment: Alignment.bottomLeft, children: <Widget>[
         Image.network(
-            'https://www.coffeeshopibiza.com/wp-content/uploads/2021/09/Coffee-shop.jpg',
+            'https://www.coffeeshopcompany.com/wp-content/uploads/2022/11/Image-1-9-von-11-scaled.jpg',
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.35,
             fit: BoxFit.cover),
