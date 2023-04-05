@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cafeminute/API/nots.dart';
 import 'package:cafeminute/openview.dart';
 import 'package:cafeminute/product_view.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,10 @@ class _MainState extends State<Main> {
     RefreshTimer = Timer.periodic(const Duration(seconds: 3), (Timer t) {
       init();
       setState(() {});
-    });
+    }  );
+    RefreshTimer = Timer.periodic(const Duration(seconds: 60), (Timer t) {
+        sendNotifications();
+    }  );
   }
 
   @override

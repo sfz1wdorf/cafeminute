@@ -1,9 +1,13 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:cafeminute/API/fetcher.dart';
 import 'package:cafeminute/news/news_view.dart';
+import 'package:cafeminute/product_view.dart';
 import 'package:easter_egg_trigger/easter_egg_trigger.dart';
 import 'package:flutter/material.dart';
 import 'package:blur/blur.dart';
 
 import 'API/initInventory.dart';
+import 'API/utils.dart';
 
 class OpenView extends StatefulWidget {
   const OpenView({
@@ -100,3 +104,5 @@ class _OpenViewState extends State<OpenView> {
             )));
   }
 }
+
+

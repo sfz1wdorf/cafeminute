@@ -1,5 +1,9 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:cafeminute/API/fetcher.dart';
+import 'package:cafeminute/API/utils.dart';
 import 'package:flutter/material.dart';
+
+import '../product_view.dart';
 
 initNots() {
   AwesomeNotifications().initialize(
@@ -29,4 +33,28 @@ initNots() {
       AwesomeNotifications().requestPermissionToSendNotifications();
     }
   });
+}
+sendNotifications() async{
+  print("nots called");
+  var notsServer = await getHttp("$url/fetchnotification", "", "GET");
+  if(notsServer.toString() != "nv"){
+    print(notsServer.toString());
+  var fetchedNots = fetchNot(notsServer.toString());
+  AwesomeNotifications().createNotification(
+  content: NotificationContent(
+    //id:heading;id:content;id:date;id:time;id:dateformated;
+      id: 10,
+      channelKey: 'basic_channel',
+      title: fetchedNots[0],
+      body: fetchedNots[1],
+      actionType: ActionType.Default
+  )
+);
+  }
+}
+
+List<String> fetchNot(String nots){
+var notsUnclean = nots.split(";");
+var notsCleaned = [unWhiteSpace(notsUnclean[0].substring(0,6)),unWhiteSpace(notsUnclean[0].substring(0,6))];
+return notsCleaned;
 }

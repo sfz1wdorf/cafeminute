@@ -11,7 +11,7 @@ import 'API/nots.dart';
 void main() async {
   await init();
   runApp(Minute());
-  //initNots();
+  initNots();
 }
 
 class Minute extends StatefulWidget {
