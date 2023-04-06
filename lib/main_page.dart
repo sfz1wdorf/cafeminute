@@ -22,7 +22,7 @@ class _MainState extends State<Main> {
   void initState() {
     Timer RefreshTimer;
     //TODO rise Interval to higher number for production
-    RefreshTimer = Timer.periodic(const Duration(seconds: 3), (Timer t) {
+    RefreshTimer = Timer.periodic(const Duration(seconds: 30), (Timer t) {
       init();
       setState(() {});
     }  );
