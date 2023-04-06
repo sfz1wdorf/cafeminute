@@ -55,6 +55,6 @@ sendNotifications() async{
 
 List<String> fetchNot(String nots){
 var notsUnclean = nots.split(";");
-var notsCleaned = [unWhiteSpace(notsUnclean[0].substring(0,6)),unWhiteSpace(notsUnclean[0].substring(0,6))];
+var notsCleaned = [unWhiteSpace(notsUnclean[0].substring(6,unWhiteSpace(notsUnclean[0]).length)),unWhiteSpace(notsUnclean[1].substring(6,unWhiteSpace(notsUnclean[1]).length))];
 return notsCleaned;
 }
