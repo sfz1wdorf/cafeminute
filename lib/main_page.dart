@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cafeminute/API/nots.dart';
 import 'package:cafeminute/openview.dart';
 import 'package:cafeminute/product_view.dart';
@@ -21,7 +22,12 @@ class _MainState extends State<Main> {
   @override
   void initState() {
     Timer RefreshTimer;
-    //TODO rise Interval to higher number for production
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+  if (!isAllowed) {
+    _showNotificationDialog();
+  }
+});
+
     RefreshTimer = Timer.periodic(const Duration(seconds: 30), (Timer t) {
       init();
       setState(() {});
@@ -92,6 +98,40 @@ class _MainState extends State<Main> {
       ],
     );
   }
+  Future<void> _showNotificationDialog() async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Benachrichtigungen erlauben'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              Text('Akzeptiere Benachrichtigungen'),
+              Text('um über die neusten Aktionen'),
+              Text("und Nachrichten informiert zu werden")
+            ],
+          ),
+        ),
+        actions: <Widget>[
+                  TextButton(
+            child: const Text('Ablehnen'),
+            onPressed: () {
+              Navigator.of(context).pop();}),
+          TextButton(
+            child: const Text('Akzeptieren'),
+            onPressed: () {
+              AwesomeNotifications().requestPermissionToSendNotifications();
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
 }
 
 /*
