@@ -87,9 +87,11 @@ class _NewsInfoState extends State<NewsInfo> {
                       if(value != false){
                       addpart = await getHttp("$url/addparticipant",{"pswd" : "CDSLLM0qL&KS2RjhgVSLw^hSvehR0UlPZ6wOz!CMS9x2oJELmU", "id": "${widget.id}"}, "PATCH");
                       registrations.add(widget.id);
+                      storeRegistrations();
                       }else{
                       addpart = await getHttp("$url/removeparticipant",{"pswd" : "CDSLLM0qL&KS2RjhgVSLw^hSvehR0UlPZ6wOz!CMS9x2oJELmU", "id": "${widget.id}"}, "PATCH");
                       registrations.remove(widget.id);
+                      storeRegistrations();
                       }
                       if (addpart.toString == "sucess"){
 

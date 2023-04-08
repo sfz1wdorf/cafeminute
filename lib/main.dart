@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cafeminute/API/fetcher.dart';
+import 'package:cafeminute/news/news_view.dart';
 import 'package:cafeminute/product_view.dart';
 import 'package:flutter/material.dart';
 import 'API/initInventory.dart';
@@ -12,6 +13,7 @@ void main() async {
   await init();
   runApp(Minute());
   initNots();
+  getRegistrations();
 }
 var url = "http://192.168.178.32:1312";
 

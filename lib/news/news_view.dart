@@ -4,6 +4,7 @@ import 'package:cafeminute/API/utils.dart';
 import 'package:cafeminute/news/news_entry.dart';
 import 'package:cafeminute/news/news_info.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../API/fetcher.dart';
 import '../main.dart';
@@ -17,9 +18,17 @@ class NewsView extends StatefulWidget {
   @override
   State<NewsView> createState() => _NewsViewState();
 }
-var registrations = [];
-syncRegistration(){
-  
+List<String> registrations = [];
+storeRegistrations() async{
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setStringList('registrations', registrations);
+  print(prefs.getStringList('registrations')!);
+}
+getRegistrations() async{
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  if(await prefs.getStringList('registrations') != null){
+  registrations = prefs.getStringList('registrations')!;
+  }
 }
 class _NewsViewState extends State<NewsView> {
   @override
