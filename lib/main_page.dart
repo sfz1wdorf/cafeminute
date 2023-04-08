@@ -70,6 +70,7 @@ class _MainState extends State<Main> {
                       padding: const EdgeInsets.only(left: 0),
                       child: TextField(
                         controller: editingController,
+                          textAlignVertical: TextAlignVertical.center,
                         cursorColor: Colors.grey,
                         style: TextStyle(fontSize: 20, color: Colors.grey),
                         onChanged: (value) {
@@ -83,6 +84,7 @@ class _MainState extends State<Main> {
                               color: Colors.grey,
                             ),
                             hintText: "Suche",
+                            isCollapsed: true,
                             hintStyle: TextStyle(fontSize: 20),
                             border: InputBorder.none),
                       ),
