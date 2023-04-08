@@ -13,6 +13,7 @@ void main() async {
   runApp(Minute());
   initNots();
 }
+var url = "http://192.168.178.32:1312";
 
 class Minute extends StatefulWidget {
   const Minute({Key? key}) : super(key: key);

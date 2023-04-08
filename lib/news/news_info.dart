@@ -1,8 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cafeminute/API/fetcher.dart';
+import 'package:cafeminute/news/news_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
 
+import '../main.dart';
 import 'news_entry.dart';
 
 class NewsInfo extends StatefulWidget {
@@ -11,20 +14,24 @@ class NewsInfo extends StatefulWidget {
   final String date;
   final String imageUrl;
   final String heading;
+  final bool isevent;
+  final String id;
  NewsInfo(
       {required this.content,
       required this.contentRaw,
       required this.date,
       required this.heading,
+      required this.id,
+      required this.isevent,
       required this.imageUrl});
 
   @override
   State<NewsInfo> createState() => _NewsInfoState();
 }
-
 class _NewsInfoState extends State<NewsInfo> {
   @override
   Widget build(BuildContext context) {
+    var isChanged = registrations.contains(widget.id);
     return Scaffold(
             appBar: AppBar(
         leading: IconButton(
@@ -49,14 +56,52 @@ class _NewsInfoState extends State<NewsInfo> {
               padding: const EdgeInsets.all(8.0),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: AutoSizeText(widget.heading, textScaleFactor: 1.5, style: TextStyle(fontWeight: FontWeight.bold),maxLines: 2,)),
+                child: widget.isevent ? AutoSizeText(widget.heading + " - Aktion", textScaleFactor: 1.5, style: TextStyle(fontWeight: FontWeight.bold),maxLines: 2,) : AutoSizeText(widget.heading, textScaleFactor: 1.5, style: TextStyle(fontWeight: FontWeight.bold),maxLines: 2,)),
             ),
                     Padding(
                 padding: const EdgeInsets.only(left:7, bottom: 3),
                 child: Align(alignment: Alignment.bottomLeft,
-                child: Text(formatedDate(widget.date),
-                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)
-                ,
+                child: Row(
+                  children: [
+                    Text(formatedDate(widget.date),
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)
+                    ,
+                    ),
+                    Spacer(),
+                    Visibility(
+                      visible: widget.isevent,
+                      child: Text("An Aktion teilnehmen",
+                      style: TextStyle(fontWeight: FontWeight.normal, color: Colors.black)
+                      ,
+                      ),
+                    ),
+
+                    Visibility(
+                      visible: widget.isevent,
+                      child: Checkbox(value: isChanged, 
+                      shape: CircleBorder(),
+                      checkColor: Colors.green,
+                      activeColor: Colors.white,
+                      onChanged: (bool? value) async{
+                        var addpart;
+                      if(value != false){
+                      addpart = await getHttp("$url/addparticipant",{"pswd" : "CDSLLM0qL&KS2RjhgVSLw^hSvehR0UlPZ6wOz!CMS9x2oJELmU", "id": "${widget.id}"}, "PATCH");
+                      registrations.add(widget.id);
+                      }else{
+                      addpart = await getHttp("$url/removeparticipant",{"pswd" : "CDSLLM0qL&KS2RjhgVSLw^hSvehR0UlPZ6wOz!CMS9x2oJELmU", "id": "${widget.id}"}, "PATCH");
+                      registrations.remove(widget.id);
+                      }
+                      if (addpart.toString == "sucess"){
+
+                      }
+                       setState((){
+                           isChanged = value!;
+                          });
+                       },
+                      
+                      ),
+                    )
+                  ],
                 ),
                 ),
               )

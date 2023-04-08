@@ -1,5 +1,6 @@
 import 'package:cafeminute/product_view.dart';
 
+import '../main.dart';
 import 'fetcher.dart';
 var news;
 var isopen;

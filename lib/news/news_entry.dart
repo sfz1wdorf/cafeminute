@@ -7,11 +7,13 @@ class NewsEntry extends StatefulWidget {
   final String date;
   final String imageUrl;
   final String heading;
- NewsEntry(
+    final bool isevent;
+   NewsEntry(
       {required this.content,
       required this.contentRaw,
       required this.date,
       required this.heading,
+      required this.isevent,
       required this.imageUrl});
 
   @override
@@ -56,7 +58,19 @@ class _NewsEntryState extends State<NewsEntry> {
               ),),
               Align(
               alignment: Alignment.centerLeft,
-              child: AutoSizeText(widget.heading, textScaleFactor: 1.5, style: TextStyle(fontWeight: FontWeight.bold),maxLines: 2,)),
+              child: Row(
+                children: [
+                  AutoSizeText(widget.heading, textScaleFactor: 1.5, style: TextStyle(fontWeight: FontWeight.bold),maxLines: 2,),
+                  Spacer(),
+                  Visibility(
+                    visible: widget.isevent,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.event_sharp, color: Colors.green, size: 20,),
+                    ),
+                  )
+                ],
+              )),
               Align(
                 alignment: Alignment.centerLeft,
                 child: widget.contentRaw.length > 400 ? AutoSizeText(

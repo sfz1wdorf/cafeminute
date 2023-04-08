@@ -7,8 +7,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'API/fetcher.dart';
+import 'main.dart';
 
-var url = "http://minutebackend.hopto.org:1312";
 
 class ProductView extends StatefulWidget {
   const ProductView({

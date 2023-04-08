@@ -2,6 +2,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cafeminute/API/fetcher.dart';
 import 'package:cafeminute/API/utils.dart';
 import 'package:flutter/material.dart';
+import '../main.dart';
 
 import '../product_view.dart';
 

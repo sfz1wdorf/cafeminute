@@ -1,10 +1,12 @@
 
 import 'package:cafeminute/API/initInventory.dart';
+import 'package:cafeminute/API/utils.dart';
 import 'package:cafeminute/news/news_entry.dart';
 import 'package:cafeminute/news/news_info.dart';
 import 'package:flutter/material.dart';
 
 import '../API/fetcher.dart';
+import '../main.dart';
 import '../product_entry/product_entry.dart';
 import '../product_info/product_info.dart';
 import '../product_view.dart';
@@ -15,7 +17,10 @@ class NewsView extends StatefulWidget {
   @override
   State<NewsView> createState() => _NewsViewState();
 }
-
+var registrations = [];
+syncRegistration(){
+  
+}
 class _NewsViewState extends State<NewsView> {
   @override
   Widget build(BuildContext context) {
@@ -44,6 +49,7 @@ class _NewsViewState extends State<NewsView> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
+                  print(fetchNewsInfo(newsIDs[index], url)[5]);
                   Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -52,7 +58,9 @@ class _NewsViewState extends State<NewsView> {
                     contentRaw: fetchNewsInfo(newsIDs[index], url)[1],
                     date: fetchNewsInfo(newsIDs[index], url)[2],
                     heading: fetchNewsInfo(newsIDs[index], url)[3],
-                    imageUrl: fetchNewsInfo(newsIDs[index], url)[4],                
+                    imageUrl: fetchNewsInfo(newsIDs[index], url)[4],
+                    isevent: unWhiteSpace(fetchNewsInfo(newsIDs[index], url)[5]) == "true",
+                    id: newsIDs[index]
                       )));
                 },
                 child: NewsEntry(
@@ -61,6 +69,7 @@ class _NewsViewState extends State<NewsView> {
                     date: fetchNewsInfo(newsIDs[index], url)[2],
                     heading: fetchNewsInfo(newsIDs[index], url)[3],
                     imageUrl: fetchNewsInfo(newsIDs[index], url)[4],
+                    isevent: unWhiteSpace(fetchNewsInfo(newsIDs[index], url)[5]) == "true",
                 ),
               );
             },
