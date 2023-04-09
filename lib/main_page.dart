@@ -24,7 +24,8 @@ class _MainState extends State<Main> {
     Timer RefreshTimer;
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
   if (!isAllowed) {
-    _showNotificationDialog();
+    AwesomeNotifications().requestPermissionToSendNotifications();
+    //_showNotificationDialog(); TODO: Thoroughly test if the dialog is shown by the system anyway
   }
 });
 
@@ -85,7 +86,7 @@ class _MainState extends State<Main> {
                             ),
                             hintText: "Suche",
                             isCollapsed: true,
-                            hintStyle: TextStyle(fontSize: 20),
+                            hintStyle: TextStyle(fontSize: 20, color: Colors.grey),
                             border: InputBorder.none),
                       ),
                     ),
