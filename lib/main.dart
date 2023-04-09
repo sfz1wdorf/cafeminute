@@ -30,7 +30,7 @@ class _MinuteState extends State<Minute> {
     return GestureDetector(
       onDoubleTap: () {
         FocusScope.of(context).requestFocus(new FocusNode());
-        print("out");
+        //term
       },
       child: MaterialApp(
         home: Material(child: Main()),
