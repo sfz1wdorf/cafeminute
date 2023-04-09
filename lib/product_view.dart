@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cafeminute/main_page.dart';
 import 'package:cafeminute/product_info/product_info.dart';
 import 'package:cafeminute/product_entry/product_entry.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class _ProductViewState extends State<ProductView> {
               return InkWell(
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(
+                 CupertinoPageRoute(
                       builder: (context) => ProductInfo(
                             allergenics:
                                 fetchProductInfo(productIDs[index], url)[5],
@@ -70,7 +71,7 @@ class _ProductViewState extends State<ProductView> {
               return InkWell(
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(
+                  CupertinoPageRoute(
                       builder: (context) => ProductInfo(
                           allergenics:
                               fetchProductInfo(productIDSorted[index], url)[5],

@@ -3,6 +3,7 @@ import 'package:cafeminute/API/fetcher.dart';
 import 'package:cafeminute/news/news_view.dart';
 import 'package:cafeminute/product_view.dart';
 import 'package:easter_egg_trigger/easter_egg_trigger.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:blur/blur.dart';
 
@@ -66,7 +67,7 @@ class _OpenViewState extends State<OpenView> {
               onTap: () {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => const NewsView()),
+    CupertinoPageRoute(builder: (context) => const NewsView()),
   );
 },
               child: Padding(

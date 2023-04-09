@@ -3,6 +3,7 @@ import 'package:cafeminute/API/initInventory.dart';
 import 'package:cafeminute/API/utils.dart';
 import 'package:cafeminute/news/news_entry.dart';
 import 'package:cafeminute/news/news_info.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -61,7 +62,7 @@ class _NewsViewState extends State<NewsView> {
                   print(fetchNewsInfo(newsIDs[index], url)[5]);
                   Navigator.push(
                   context,
-                  MaterialPageRoute(
+                  CupertinoPageRoute(
                       builder: (context) => NewsInfo(
                     content: fetchNewsInfo(newsIDs[index], url)[0],
                     contentRaw: fetchNewsInfo(newsIDs[index], url)[1],
