@@ -25,7 +25,7 @@ class _MainState extends State<Main> {
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
   if (!isAllowed) {
     AwesomeNotifications().requestPermissionToSendNotifications();
-    //_showNotificationDialog(); TODO: Thoroughly test if the dialog is shown by the system anyway
+    //_showNotificationDialog(); //TODO: Thoroughly test if the dialog is shown by the system anyway
   }
 });
 
