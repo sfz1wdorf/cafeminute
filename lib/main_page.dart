@@ -11,7 +11,6 @@ class Main extends StatefulWidget {
   const Main({
     super.key,
   });
-//
   @override
   State<Main> createState() => _MainState();
 }
