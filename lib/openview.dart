@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cafeminute/API/fetcher.dart';
 import 'package:cafeminute/news/news_view.dart';
@@ -31,8 +33,8 @@ class _OpenViewState extends State<OpenView> {
         EasterEggTriggers.SwipeDown,
       ],
       child: Stack(alignment: Alignment.bottomLeft, children: <Widget>[
-        Image.network(
-            'https://www.coffeeshopcompany.com/wp-content/uploads/2022/11/Image-1-9-von-11-scaled.jpg',
+        Image.asset(
+            ('assets/background_.jpeg'),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.35,
             fit: BoxFit.cover),

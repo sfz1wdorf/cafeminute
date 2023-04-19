@@ -23,8 +23,8 @@ class _MainState extends State<Main> {
     Timer RefreshTimer;
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
   if (!isAllowed) {
-    AwesomeNotifications().requestPermissionToSendNotifications();
-    //_showNotificationDialog(); //TODO: Thoroughly test if the dialog is shown by the system anyway
+    //AwesomeNotifications().requestPermissionToSendNotifications();
+  _showNotificationDialog(); //TODO: Thoroughly test if the dialog is shown by the system anyway
   }
 });
 
