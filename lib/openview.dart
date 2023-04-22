@@ -22,6 +22,7 @@ class OpenView extends StatefulWidget {
 }
 
 class _OpenViewState extends State<OpenView> {
+
   @override
   Widget build(BuildContext context) {
     return EasterEggTrigger(
@@ -67,11 +68,19 @@ class _OpenViewState extends State<OpenView> {
             Spacer(),
             GestureDetector(
               onTap: () {
-  Navigator.push(
-    context,
-    CupertinoPageRoute(builder: (context) => const NewsView()),
-  );
-},
+              if(enable_news == true){
+              Navigator.push(
+                context,
+              CupertinoPageRoute(builder: (context) => const NewsView()),
+               );
+              }else{
+              const snackBar = SnackBar(
+                  content: Text('Keine Internetverbindung!'),
+              );
+
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              }
+              },
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Icon(Icons.newspaper).frosted(

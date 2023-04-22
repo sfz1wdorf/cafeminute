@@ -1,3 +1,4 @@
+import 'package:cafeminute/news/news_view.dart';
 import 'package:cafeminute/product_view.dart';
 
 import '../main.dart';
@@ -17,6 +18,7 @@ init() async {
     productIDs = await fetchProductIDs(url);
     newsIDs = await fetchNewsIDs(url);
     news = await getHttp(url + "/getallnews", {}, "GET");
+    enable_news = true;
     var openRaw = await getHttp(url + "/isopen", {}, "GET");
     isopen = openRaw.toString().toLowerCase() == 'true';
     return "finished";
