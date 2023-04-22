@@ -5,6 +5,8 @@ import 'package:cafeminute/product_view.dart';
 import 'package:dio/dio.dart';
 
 var products;
+
+
 List<String> fetchProductInfo(String id, url) {
   var idsString = productIDs;
 

@@ -26,3 +26,17 @@ init() async {
   return "failed";
 }
 //s
+Future<bool> checkConnection() async {
+  var validation;
+  try {
+    validation = await getHttp(url + "/", {}, "GET");
+  } catch (e) {
+    return false;
+  }
+  if (validation.toString() == "Root Route!") {
+    enable_news = true;
+  return true;
+  }
+  enable_news = false;
+  return false;
+}

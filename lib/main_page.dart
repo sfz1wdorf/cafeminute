@@ -32,6 +32,10 @@ class _MainState extends State<Main> {
       init();
       setState(() {});
     }  );
+    RefreshTimer = Timer.periodic(const Duration(seconds: 5), (Timer t) {
+      checkConnection();
+      setState(() {});
+    }  );
     RefreshTimer = Timer.periodic(const Duration(seconds: 60), (Timer t) {
         sendNotifications();
     }  );
