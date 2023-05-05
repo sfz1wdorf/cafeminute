@@ -5,12 +5,18 @@ import '../main.dart';
 import 'fetcher.dart';
 var news;
 var isopen;
+var isConnected = false;
 var newsIDs;
 init() async {
   var validation;
   try {
     validation = await getHttp(url + "/", {}, "GET");
+    if(validation == null){
+      isConnected = false;
+      return "failed";
+    }
   } catch (e) {
+    isConnected = false;
     return "failed";
   }
   if (validation.toString() == "Root Route!") {
@@ -23,6 +29,7 @@ init() async {
     isopen = openRaw.toString().toLowerCase() == 'true';
     return "finished";
   }
+  isConnected = false;
   return "failed";
 }
 //s

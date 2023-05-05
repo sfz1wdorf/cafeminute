@@ -52,12 +52,12 @@ getHttp(path, dataset, method) async {
         path,
         data: dataset,
         options: Options(method: method),
-      );
+      ).timeout(const Duration(seconds: 10), onTimeout: () {return response;});
     } else {
       response = await Dio().request(
         path,
         options: Options(method: method),
-      );
+      ).timeout(const Duration(seconds: 10), onTimeout: () {return response;});
     }
     return response;
   } catch (e) {
