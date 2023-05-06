@@ -75,7 +75,7 @@ class _OpenViewState extends State<OpenView> {
             Spacer(),
             GestureDetector(
               onTap: () {
-              if(enable_news == true){
+              if(isConnected == true){
               Navigator.push(
                 context,
               CupertinoPageRoute(builder: (context) => const NewsView()),

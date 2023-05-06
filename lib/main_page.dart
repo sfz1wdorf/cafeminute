@@ -27,7 +27,10 @@ class _MainState extends State<Main> {
   _showNotificationDialog(); //TODO: Thoroughly test if the dialog is shown by the system anyway
   }
 });
+    checkConnection();
+    setState(() {
 
+    });
     RefreshTimer = Timer.periodic(const Duration(seconds: 30), (Timer t) {
       init();
       setState(() {});

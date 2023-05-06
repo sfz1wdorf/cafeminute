@@ -11,7 +11,6 @@ import '../main.dart';
 import '../product_entry/product_entry.dart';
 import '../product_info/product_info.dart';
 import '../product_view.dart';
-var enable_news = false;
 class NewsView extends StatefulWidget {
   const NewsView({super.key});
 

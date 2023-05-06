@@ -24,7 +24,7 @@ init() async {
     productIDs = await fetchProductIDs(url);
     newsIDs = await fetchNewsIDs(url);
     news = await getHttp(url + "/getallnews", {}, "GET");
-    enable_news = true;
+    isConnected = true;
     var openRaw = await getHttp(url + "/isopen", {}, "GET");
     isopen = openRaw.toString().toLowerCase() == 'true';
     return "finished";
@@ -40,10 +40,17 @@ Future<bool> checkConnection() async {
   } catch (e) {
     return false;
   }
+
   if (validation.toString() == "Root Route!") {
-    enable_news = true;
+    if(isConnected == false){
+    isConnected = true;
+    init();
+    }else{
+    isConnected = true;
+    }
   return true;
   }
-  enable_news = false;
+  isConnected = false;
   return false;
 }
+
