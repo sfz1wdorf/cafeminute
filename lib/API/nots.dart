@@ -4,7 +4,6 @@ import 'package:cafeminute/API/utils.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 
-import '../product_view.dart';
 
 initNots() {
   AwesomeNotifications().initialize(

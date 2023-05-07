@@ -1,4 +1,3 @@
-import 'package:cafeminute/news/news_view.dart';
 import 'package:cafeminute/product_view.dart';
 
 import '../main.dart';
@@ -10,7 +9,7 @@ var newsIDs;
 init() async {
   var validation;
   try {
-    validation = await getHttp(url + "/", {}, "GET");
+    validation = await getHttp("$url/", {}, "GET");
     if(validation == null){
       isConnected = false;
       return "failed";

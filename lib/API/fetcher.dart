@@ -1,10 +1,8 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cafeminute/API/initInventory.dart';
-import 'package:cafeminute/main_page.dart';
 import 'package:cafeminute/product_view.dart';
 import 'package:dio/dio.dart';
 
-var products;
+late String products;
 
 
 List<String> fetchProductInfo(String id, url) {
