@@ -45,7 +45,7 @@ class _OpenViewState extends State<OpenView> {
                 alignment: FractionalOffset.bottomLeft,
                 child: Padding(
                     padding: EdgeInsets.all(10.0),
-                    child: isConnected == true ? Text(
+                    child: Text(
                       isopen == null
                           ? "..."
                           : isopen == true
@@ -64,13 +64,6 @@ class _OpenViewState extends State<OpenView> {
                       borderRadius: BorderRadius.circular(10),
                       padding:
                           EdgeInsets.only(left: 6, right: 6, top: 2, bottom: 2),
-                    ): Icon(Icons.signal_wifi_connected_no_internet_4, color: Color.fromARGB(255, 221, 30, 0),).frosted(
-                      blur: 15,
-                      borderRadius: BorderRadius.circular(10),
-                      padding:
-                          EdgeInsets.only(left: 6, right: 6, top: 2, bottom: 2),
-
-
                     ))),
             Spacer(),
             GestureDetector(
