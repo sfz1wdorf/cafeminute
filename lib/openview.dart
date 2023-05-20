@@ -1,16 +1,10 @@
-import 'dart:io';
-
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:cafeminute/API/fetcher.dart';
 import 'package:cafeminute/news/news_view.dart';
-import 'package:cafeminute/product_view.dart';
 import 'package:easter_egg_trigger/easter_egg_trigger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:blur/blur.dart';
 
 import 'API/initInventory.dart';
-import 'API/utils.dart';
 
 class OpenView extends StatefulWidget {
   const OpenView({
@@ -22,7 +16,6 @@ class OpenView extends StatefulWidget {
 }
 
 class _OpenViewState extends State<OpenView> {
-
   @override
   Widget build(BuildContext context) {
     return EasterEggTrigger(
@@ -34,8 +27,7 @@ class _OpenViewState extends State<OpenView> {
         EasterEggTriggers.SwipeDown,
       ],
       child: Stack(alignment: Alignment.bottomLeft, children: <Widget>[
-        Image.asset(
-            ('assets/background_.jpeg'),
+        Image.asset(('assets/background_.jpeg'),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.35,
             fit: BoxFit.cover),
@@ -68,18 +60,18 @@ class _OpenViewState extends State<OpenView> {
             Spacer(),
             GestureDetector(
               onTap: () {
-              if(isConnected == true){
-              Navigator.push(
-                context,
-              CupertinoPageRoute(builder: (context) => const NewsView()),
-               );
-              }else{
-              const snackBar = SnackBar(
-                  content: Text('Keine Internetverbindung!'),
-              );
+                if (isConnected == true) {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(builder: (context) => const NewsView()),
+                  );
+                } else {
+                  const snackBar = SnackBar(
+                    content: Text('Keine Internetverbindung!'),
+                  );
 
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              }
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
               },
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -116,5 +108,3 @@ class _OpenViewState extends State<OpenView> {
             )));
   }
 }
-
-

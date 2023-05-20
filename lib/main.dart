@@ -1,9 +1,4 @@
-import 'dart:async';
-
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:cafeminute/API/fetcher.dart';
 import 'package:cafeminute/news/news_view.dart';
-import 'package:cafeminute/product_view.dart';
 import 'package:flutter/material.dart';
 import 'API/initInventory.dart';
 import "main_page.dart";
@@ -16,6 +11,7 @@ void main() async {
   initNots();
   getRegistrations();
 }
+
 var url = "http://minutebackend.hopto.org:1312";
 
 class Minute extends StatefulWidget {
