@@ -1,15 +1,11 @@
-import 'dart:io';
-
 import 'package:cafeminute/main_page.dart';
 import 'package:cafeminute/product_info/product_info.dart';
 import 'package:cafeminute/product_entry/product_entry.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'API/fetcher.dart';
 import 'main.dart';
-
 
 class ProductView extends StatefulWidget {
   const ProductView({
@@ -33,7 +29,7 @@ class _ProductViewState extends State<ProductView> {
               return InkWell(
                 onTap: () => Navigator.push(
                   context,
-                 CupertinoPageRoute(
+                  CupertinoPageRoute(
                       builder: (context) => ProductInfo(
                             allergenics:
                                 fetchProductInfo(productIDs[index], url)[5],
@@ -128,6 +124,7 @@ List<String> productIDSortedUpdate_(List<String> productids, String query) {
   print(sorted);
   return sorted;
 }
+
 List<String> productIDSortedUpdate(List<String> productids, String query) {
   List<String> sorted = [];
   productids.forEach((element) {
@@ -135,7 +132,9 @@ List<String> productIDSortedUpdate(List<String> productids, String query) {
     if (query != "") {
       if (fetchProductInfo(element, url)[0]
           .contains(query.replaceAll(" ", "").toLowerCase())) {
-        if ((fetchProductInfo(element, url)[0]).replaceAll(" ", "").substring(0, query.replaceAll(" ", "").toLowerCase().length) ==
+        if ((fetchProductInfo(element, url)[0])
+                .replaceAll(" ", "")
+                .substring(0, query.replaceAll(" ", "").toLowerCase().length) ==
             query.replaceAll(" ", "").toLowerCase()) {
           sorted.insert(0, element);
           print("true for:" + fetchProductInfo(element, url)[0]);
