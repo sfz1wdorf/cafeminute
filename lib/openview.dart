@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:blur/blur.dart';
 
 import 'API/initInventory.dart';
+import 'schedule_page/schedule_view.dart';
 
 class OpenView extends StatefulWidget {
   const OpenView({
@@ -33,30 +34,46 @@ class _OpenViewState extends State<OpenView> {
             fit: BoxFit.cover),
         Row(
           children: [
-            Align(
-                alignment: FractionalOffset.bottomLeft,
-                child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Text(
-                      isopen == null
-                          ? "..."
-                          : isopen == true
-                              ? "○ Geöffnet"
-                              : "○ Geschlossen",
-                      textScaleFactor: 1.7,
-                      style: TextStyle(
-                          color: isopen == null
-                              ? Colors.black
-                              : isopen == true
-                                  ? Colors.green
-                                  : const Color.fromARGB(255, 255, 0, 0),
-                          fontWeight: FontWeight.w400),
-                    ).frosted(
-                      blur: 15,
-                      borderRadius: BorderRadius.circular(10),
-                      padding:
-                          EdgeInsets.only(left: 6, right: 6, top: 2, bottom: 2),
-                    ))),
+            GestureDetector(
+              onTap: () {
+                if (isConnected == true) {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(builder: (context) => ScheduleView(schedule: schedule.toString().split("◌◌◞◌◌◌"))),
+                  );
+                } else {
+                  const snackBar = SnackBar(
+                    content: Text('Keine Internetverbindung!'),
+                  );
+
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
+              },
+              child: Align(
+                  alignment: FractionalOffset.bottomLeft,
+                  child: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Text(
+                        isopen == null
+                            ? "..."
+                            : isopen == true
+                                ? "○ Geöffnet"
+                                : "○ Geschlossen",
+                        textScaleFactor: 1.7,
+                        style: TextStyle(
+                            color: isopen == null
+                                ? Colors.black
+                                : isopen == true
+                                    ? Colors.green
+                                    : const Color.fromARGB(255, 255, 0, 0),
+                            fontWeight: FontWeight.w400),
+                      ).frosted(
+                        blur: 15,
+                        borderRadius: BorderRadius.circular(10),
+                        padding:
+                            EdgeInsets.only(left: 6, right: 6, top: 2, bottom: 2),
+                      ))),
+            ),
             Spacer(),
             GestureDetector(
               onTap: () {
