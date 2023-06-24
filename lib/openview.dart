@@ -1,4 +1,5 @@
 import 'package:cafeminute/news/news_view.dart';
+import 'package:dio/dio.dart';
 import 'package:easter_egg_trigger/easter_egg_trigger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,20 +31,20 @@ class _OpenViewState extends State<OpenView> {
       child: Stack(alignment: Alignment.bottomLeft, children: <Widget>[
         Image.asset(('assets/background_.jpeg'),
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.35,
+            height: (MediaQuery.of(context).size.height * 0.35)-31,
             fit: BoxFit.cover),
         Row(
           children: [
             GestureDetector(
               onTap: () {
-                if (isConnected == true) {
+                if (isConnected == true && schedule.runtimeType != DioError) {
                   Navigator.push(
                     context,
                     CupertinoPageRoute(builder: (context) => ScheduleView(schedule: schedule.toString().split("◌◌◞◌◌◌"))),
                   );
                 } else {
                   const snackBar = SnackBar(
-                    content: Text('Keine Internetverbindung!'),
+                    content: Text('Keine Verbindung zum Server möglich!'),
                   );
 
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);

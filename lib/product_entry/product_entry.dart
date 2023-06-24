@@ -50,7 +50,7 @@ class _ProductEntryState extends State<ProductEntry> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width -
                           MediaQuery.of(context).size.width * 0.3,
-                      height: 45,
+                      height: 45, //TODO: FIX FOMRATTING EVERYWHERE
                       child: Row(
                         children: [
                           EntryTitle(widget: widget),

@@ -48,63 +48,65 @@ class _MainState extends State<Main> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Column(
-      children: [
-        const Spacer(),
-        OpenView(),
-        Padding(
-            padding: const EdgeInsets.all(8),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Container(
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      border: Border.all(
+    return Scaffold(
+      body: Column(
+        children: [
+          const Spacer(),
+          OpenView(),
+          Padding(
+              padding: const EdgeInsets.all(8),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                    decoration: BoxDecoration(
                         color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
+                        border: Border.all(
+                          color: Color.fromARGB(255, 255, 255, 255),
                         ),
-                      ]),
-                  height: MediaQuery.of(context).size.height * 0.057,
-                  child: SizedBox(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 0),
-                      child: TextField(
-                        controller: editingController,
-                          textAlignVertical: TextAlignVertical.center,
-                        cursorColor: Colors.grey,
-                        style: TextStyle(fontSize: 20, color: Colors.grey),
-                        onChanged: (value) {
-                          productIDSorted = productIDSortedUpdate(
-                              productIDs, editingController.text);
-                          setState(() {});
-                        },
-                        decoration:const InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.search,
-                              color: Colors.grey,
-                            ),
-                            hintText: "Suche",
-                            isCollapsed: true,
-                            hintStyle: TextStyle(fontSize: 20, color: Colors.grey),
-                            border: InputBorder.none),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 7,
+                            offset: Offset(0, 3), // changes position of shadow
+                          ),
+                        ]),
+                    height: 45,
+                    child: SizedBox(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 0),
+                        child: TextField(
+                          controller: editingController,
+                            textAlignVertical: TextAlignVertical.center,
+                          cursorColor: Colors.grey,
+                          style: TextStyle(fontSize: 20, color: Colors.grey),
+                          onChanged: (value) {
+                            productIDSorted = productIDSortedUpdate(
+                                productIDs, editingController.text);
+                            setState(() {});
+                          },
+                          decoration:const InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.search,
+                                color: Colors.grey,
+                              ),
+                              hintText: "Suche",
+                              isCollapsed: true,
+                              hintStyle: TextStyle(fontSize: 20, color: Colors.grey),
+                              border: InputBorder.none),
+                        ),
                       ),
-                    ),
-                  )),
-            )),
-        SizedBox(
-          height: height * (0.65 - 0.077),
-          width: width,
-          child: ProductView(),
-        ),
-        const Spacer()
-      ],
+                    )),
+              )),
+          SizedBox(
+            height: height * (0.65)-30,
+            width: width,
+            child: ProductView(),
+          ),
+          const Spacer()
+        ],
+      ),
     );
   }
   Future<void> _showNotificationDialog() async {
