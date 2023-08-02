@@ -1,4 +1,5 @@
 import 'package:cafeminute/product_info/product_info_components.dart';
+import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:flutter/material.dart';
 
 class ProductInfo extends StatelessWidget {
@@ -47,6 +48,19 @@ class ProductInfo extends StatelessWidget {
             ],
           ),
           InfoCalories(calories: calories),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                  "100g dieses Produkts verglichen mit dem Tagesbedarf (15-19 Jahre):"),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 0, bottom: 8, left: 16.0, right: 16.0),
+            child: InfoCalorieRequirement(calories: calories),
+          ),
         ],
       ),
     );
@@ -77,7 +91,7 @@ class InfoCalories extends StatelessWidget {
                 fontWeight: FontWeight.bold),
             children: <TextSpan>[
               const TextSpan(text: 'Energie:'),
-               TextSpan(
+              TextSpan(
                   text: "${calories}kcal",
                   style: const TextStyle(
                       fontWeight: FontWeight.normal, color: Colors.black)),
@@ -86,5 +100,45 @@ class InfoCalories extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class InfoCalorieRequirement extends StatelessWidget {
+  const InfoCalorieRequirement({
+    super.key,
+    required this.calories,
+  });
+
+  final String calories;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        //progess bar
+        child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: FAProgressBar(
+              currentValue:
+                  matchedRequirements(int.parse(calories), true).toDouble(),
+              displayText: "% (Mann)",
+              progressColor: Colors.lightBlue),
+        ),
+        FAProgressBar(
+            currentValue:
+                matchedRequirements(int.parse(calories), false).toDouble(),
+            displayText: "% (Frau)",
+            progressColor: Colors.red),
+      ],
+    ));
+  }
+}
+
+double matchedRequirements(int calories, bool male) {
+  if (male == true) {
+    return calories / 2500 * 100;
+  } else {
+    return calories / 2000 * 100;
   }
 }
