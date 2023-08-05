@@ -1,5 +1,6 @@
 import 'package:cafeminute/API/initInventory.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 var days = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"];
 
 class ScheduleView extends StatefulWidget{
@@ -36,32 +37,41 @@ class _ScheduleViewState extends State<ScheduleView> {
       color: Colors.white,
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      
-      child: ListView.builder(
-          physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics()),
-            padding: EdgeInsets.all(0),
-            itemCount: widget.schedule.length,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  Divider(),
-                  Container(
-                  height: MediaQuery.of(context).size.height/12,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.white,
-                  child: Center(child: Row(children: [Text(days[index], textScaleFactor: 1.2,)
-                  ,Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(widget.schedule[index], textScaleFactor: 1.5,style: TextStyle(fontWeight: FontWeight.bold),),
-                  )
-                  ])),
-                  ),
-                ],
-              );
-            
-            }),
+
+      child: Column(
+        children: [
+          SizedBox(
+              height: MediaQuery.of(context).size.height * 0.52,
+              width: MediaQuery.of(context).size.width,
+            child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
+                  padding: EdgeInsets.all(0),
+                  itemCount: widget.schedule.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Divider(),
+                        Container(
+                        height: MediaQuery.of(context).size.height/12,
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.white,
+                        child: Center(child: Row(children: [Text(days[index], textScaleFactor: 1.2,)
+                        ,Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(widget.schedule[index], textScaleFactor: 1.5,style: TextStyle(fontWeight: FontWeight.bold),),
+                        )
+                        ])),
+                        ),
+                      ],
+                    );
+
+                  }),
+          ),
+          GradientText("With ♥ by Nerdclub", colors: [Colors.green, Colors.yellow], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        ],
+      ),
     )
 );
   }
