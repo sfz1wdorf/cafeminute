@@ -20,6 +20,7 @@ final TextEditingController editingController = TextEditingController();
 class _MainState extends State<Main> {
   @override
   void initState() {
+    super.initState();
     Timer RefreshTimer;
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
   if (!isAllowed) {
@@ -52,24 +53,24 @@ class _MainState extends State<Main> {
       body: Column(
         children: [
           const Spacer(),
-          OpenView(),
+          const OpenView(),
           Padding(
               padding: const EdgeInsets.all(8),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Container(
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color:const Color.fromARGB(255, 255, 255, 255),
                         border: Border.all(
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color:const Color.fromARGB(255, 255, 255, 255),
                         ),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius:const BorderRadius.all(Radius.circular(10)),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 1,
                             blurRadius: 7,
-                            offset: Offset(0, 3), // changes position of shadow
+                            offset:const Offset(0, 3), // changes position of shadow
                           ),
                         ]),
                     height: 45,
@@ -80,7 +81,7 @@ class _MainState extends State<Main> {
                           controller: editingController,
                             textAlignVertical: TextAlignVertical.center,
                           cursorColor: Colors.grey,
-                          style: TextStyle(fontSize: 20, color: Colors.grey),
+                          style: const TextStyle(fontSize: 20, color: Colors.grey),
                           onChanged: (value) {
                             productIDSorted = productIDSortedUpdate(
                                 productIDs, editingController.text);
@@ -102,7 +103,7 @@ class _MainState extends State<Main> {
           SizedBox(
             height: height * (0.65)-30,
             width: width,
-            child: ProductView(),
+            child: const ProductView(),
           ),
           const Spacer()
         ],
@@ -116,9 +117,9 @@ class _MainState extends State<Main> {
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text('Benachrichtigungen erlauben'),
-        content: SingleChildScrollView(
+        content: const SingleChildScrollView(
           child: ListBody(
-            children: const <Widget>[
+            children:  <Widget>[
               Text('Akzeptiere Benachrichtigungen'),
               Text('um über die neusten Aktionen'),
               Text("und Nachrichten informiert zu werden")

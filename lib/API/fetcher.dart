@@ -44,7 +44,7 @@ Future<List<String>> fetchNewsIDs(url) async {
 
 getHttp(path, dataset, method) async {
   try {
-    var response;
+    late Response<dynamic> response;
     if (dataset != "") {
       response = await Dio().request(
         path,
