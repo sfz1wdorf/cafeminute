@@ -1,4 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 String unWhiteSpace(String stringToCheck) {
   return reverse(unWhiteSpaceSub(reverse(unWhiteSpaceSub(stringToCheck))));
@@ -37,6 +38,11 @@ String reverse(String s) {
   }
 
   return sb.toString();
+}
+Future<void> _launchUrl(_url) async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
+  }
 }
 
 notify() async {
