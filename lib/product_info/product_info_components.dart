@@ -1,4 +1,6 @@
+import 'package:cafeminute/API/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 
 class InfoPrize extends StatelessWidget {
   const InfoPrize({
@@ -13,12 +15,15 @@ class InfoPrize extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(13.0),
+      padding: EdgeInsets.all(13.0),
       child: sale.replaceAll(" ", "") == "nv"
           ? Text(
               prize.replaceAll(" ", ""),
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 21,
+                  fontWeight: FontWeight.bold,
+                  color: darkmode ? Colors.white : Colors.black),
             )
           : RichText(
               text: new TextSpan(
@@ -94,8 +99,49 @@ class InfoDescription extends StatelessWidget {
       padding: EdgeInsets.only(left: 13, right: 13),
       child: Text(
         description,
+        style: TextStyle(color: darkmode ? Colors.white : Colors.black),
         textScaleFactor: 1.1,
       ),
     );
+  }
+}
+
+class InfoCalorieRequirement extends StatelessWidget {
+  const InfoCalorieRequirement({
+    super.key,
+    required this.calories,
+  });
+
+  final String calories;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        //progess bar
+        child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: FAProgressBar(
+              currentValue:
+                  matchedRequirements(int.parse(calories), true).toDouble(),
+              displayText: "% (Mann)",
+              progressColor: Colors.lightBlue),
+        ),
+        FAProgressBar(
+            currentValue:
+                matchedRequirements(int.parse(calories), false).toDouble(),
+            displayText: "% (Frau)",
+            progressColor: Colors.red),
+      ],
+    ));
+  }
+}
+
+double matchedRequirements(int calories, bool male) {
+  if (male == true) {
+    return calories / 2500 * 100;
+  } else {
+    return calories / 2000 * 100;
   }
 }

@@ -36,13 +36,16 @@ class EntryTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width*0.4,
+      width: MediaQuery.of(context).size.width * 0.4,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: AutoSizeText(
           "${unWhiteSpace(widget.title)}",
-            maxLines: 2,
-          style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          maxLines: 2,
+          style: TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+              color: darkmode ? Colors.grey[400] : Colors.black),
         ),
       ),
     );
@@ -65,8 +68,10 @@ class EntryPrize extends StatelessWidget {
           ? Text(
               widget.prize.replaceAll(" ", ""),
               overflow: TextOverflow.ellipsis,
-              style:
-                  const TextStyle(fontSize: 19, fontWeight: FontWeight.normal),
+              style: TextStyle(
+                  fontSize: 19,
+                  fontWeight: FontWeight.normal,
+                  color: darkmode ? Colors.grey[400] : Colors.black),
             )
           : RichText(
               text: new TextSpan(

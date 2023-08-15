@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
 
+import '../API/utils.dart';
 import '../main.dart';
 import 'news_entry.dart';
 
@@ -16,7 +17,7 @@ class NewsInfo extends StatefulWidget {
   final String heading;
   final bool isevent;
   final String id;
- NewsInfo(
+  NewsInfo(
       {required this.content,
       required this.contentRaw,
       required this.date,
@@ -28,100 +29,144 @@ class NewsInfo extends StatefulWidget {
   @override
   State<NewsInfo> createState() => _NewsInfoState();
 }
+
 class _NewsInfoState extends State<NewsInfo> {
   @override
   Widget build(BuildContext context) {
     var isChanged = registrations.contains(widget.id);
     return Scaffold(
-            appBar: AppBar(
+      appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+          icon: Icon(Icons.arrow_back_ios,
+              color: darkmode ? Colors.white : Colors.black),
           highlightColor: Colors.transparent,
           splashColor: Colors.transparent,
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text("News"),
-        backgroundColor: Colors.white,
+        title: Text("News",
+            style: TextStyle(color: darkmode ? Colors.white : Colors.black)),
+        backgroundColor: darkmode ? Colors.grey[900] : Colors.white,
         shadowColor: Colors.transparent,
         foregroundColor: Colors.black,
       ),
-
       body: SizedBox(
-        height: MediaQuery.of(context).size.height-56,
+        height: MediaQuery.of(context).size.height - 56,
         width: MediaQuery.of(context).size.width,
         child: Column(
-
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Align(
-                alignment: Alignment.centerLeft,
-                child: widget.isevent ? AutoSizeText(widget.heading + " - Aktion", textScaleFactor: 1.5, style: TextStyle(fontWeight: FontWeight.bold),maxLines: 2,) : AutoSizeText(widget.heading, textScaleFactor: 1.5, style: TextStyle(fontWeight: FontWeight.bold),maxLines: 2,)),
+                  alignment: Alignment.centerLeft,
+                  child: widget.isevent
+                      ? AutoSizeText(
+                          widget.heading + " - Aktion",
+                          textScaleFactor: 1.5,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: darkmode ? Colors.white : Colors.black),
+                          maxLines: 2,
+                        )
+                      : AutoSizeText(
+                          widget.heading,
+                          textScaleFactor: 1.5,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                          maxLines: 2,
+                        )),
             ),
-                    Padding(
-                padding: const EdgeInsets.only(left:7, bottom: 3),
-                child: Align(alignment: Alignment.bottomLeft,
+            Padding(
+              padding: const EdgeInsets.only(left: 7, bottom: 3),
+              child: Align(
+                alignment: Alignment.bottomLeft,
                 child: Row(
                   children: [
-                    Text(formatedDate(widget.date),
-                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)
-                    ,
+                    Text(
+                      formatedDate(widget.date),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.grey),
                     ),
                     Spacer(),
                     Visibility(
                       visible: widget.isevent,
-                      child: Text("An Aktion teilnehmen",
-                      style: TextStyle(fontWeight: FontWeight.normal, color: Colors.black)
-                      ,
+                      child: Text(
+                        "An Aktion teilnehmen",
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            color: darkmode ? Colors.white : Colors.black),
                       ),
                     ),
-
                     Visibility(
                       visible: widget.isevent,
-                      child: Checkbox(value: isChanged, 
-                      shape: CircleBorder(),
-                      checkColor: Colors.green,
-                      activeColor: Colors.white,
-                      onChanged: (bool? value) async{
-                        var addpart;
-                      if(value != false){
-                      addpart = await getHttp("$url/addparticipant",{"pswd" : "CDSLLM0qL&KS2RjhgVSLw^hSvehR0UlPZ6wOz!CMS9x2oJELmU", "id": "${widget.id}"}, "PATCH");
-                      registrations.add(widget.id);
-                      storeRegistrations();
-                      }else{
-                      addpart = await getHttp("$url/removeparticipant",{"pswd" : "CDSLLM0qL&KS2RjhgVSLw^hSvehR0UlPZ6wOz!CMS9x2oJELmU", "id": "${widget.id}"}, "PATCH");
-                      registrations.remove(widget.id);
-                      storeRegistrations();
-                      }
-                      if (addpart.toString == "sucess"){
-
-                      }
-                       setState((){
-                           isChanged = value!;
+                      child: Checkbox(
+                        value: isChanged,
+                        shape: CircleBorder(),
+                        checkColor: Colors.green,
+                        activeColor: darkmode ? Colors.grey[900] : Colors.white,
+                        onChanged: (bool? value) async {
+                          var addpart;
+                          if (value != false) {
+                            addpart = await getHttp(
+                                "$url/addparticipant",
+                                {
+                                  "pswd":
+                                      "CDSLLM0qL&KS2RjhgVSLw^hSvehR0UlPZ6wOz!CMS9x2oJELmU",
+                                  "id": "${widget.id}"
+                                },
+                                "PATCH");
+                            registrations.add(widget.id);
+                            storeRegistrations();
+                          } else {
+                            addpart = await getHttp(
+                                "$url/removeparticipant",
+                                {
+                                  "pswd":
+                                      "CDSLLM0qL&KS2RjhgVSLw^hSvehR0UlPZ6wOz!CMS9x2oJELmU",
+                                  "id": "${widget.id}"
+                                },
+                                "PATCH");
+                            registrations.remove(widget.id);
+                            storeRegistrations();
+                          }
+                          if (addpart.toString == "sucess") {}
+                          setState(() {
+                            isChanged = value!;
                           });
-                       },
-                      
+                        },
                       ),
                     )
                   ],
                 ),
-                ),
-              )
-,
-            SizedBox(
-                    height: MediaQuery.of(context).size.height-56,
-        width: MediaQuery.of(context).size.width,
-            child: Markdown(
-                  selectable: true,
-                  data: widget.content,
-                  extensionSet: md.ExtensionSet(
-            md.ExtensionSet.gitHubFlavored.blockSyntaxes,
-            [md.EmojiSyntax(), ...md.ExtensionSet.gitHubFlavored.inlineSyntaxes],
-                  ),
+              ),
             ),
-          ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height - 56,
+              width: MediaQuery.of(context).size.width,
+              child: Markdown(
+                selectable: true,
+                data: widget.content,
+                styleSheet: MarkdownStyleSheet.fromTheme(ThemeData(
+                    textTheme: TextTheme(
+                        bodyMedium: TextStyle(
+                            fontSize: 17.0,
+                            color: darkmode ? Colors.white : Colors.black),
+                        bodyLarge: TextStyle(
+                            fontSize: 21.0,
+                            color: darkmode ? Colors.white : Colors.white),
+                        bodySmall: TextStyle(
+                            fontSize: 15.0,
+                            color: darkmode ? Colors.white : Colors.white)))),
+                extensionSet: md.ExtensionSet(
+                  md.ExtensionSet.gitHubFlavored.blockSyntaxes,
+                  [
+                    md.EmojiSyntax(),
+                    ...md.ExtensionSet.gitHubFlavored.inlineSyntaxes
+                  ],
+                ),
+              ),
+            ),
           ],
-          
         ),
       ),
-    );}}
+    );
+  }
+}

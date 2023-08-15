@@ -1,3 +1,4 @@
+import 'package:cafeminute/API/utils.dart';
 import 'package:cafeminute/news/news_view.dart';
 import 'package:dio/dio.dart';
 import 'package:easter_egg_trigger/easter_egg_trigger.dart';
@@ -31,7 +32,7 @@ class _OpenViewState extends State<OpenView> {
       child: Stack(alignment: Alignment.bottomLeft, children: <Widget>[
         Image.asset(('assets/background_.jpeg'),
             width: MediaQuery.of(context).size.width,
-            height: (MediaQuery.of(context).size.height * 0.35)-31,
+            height: (MediaQuery.of(context).size.height * 0.35) - 31,
             fit: BoxFit.cover),
         Row(
           children: [
@@ -40,7 +41,9 @@ class _OpenViewState extends State<OpenView> {
                 if (isConnected == true && schedule.runtimeType != DioError) {
                   Navigator.push(
                     context,
-                    CupertinoPageRoute(builder: (context) => ScheduleView(schedule: schedule.toString().split("◌◌◞◌◌◌"))),
+                    CupertinoPageRoute(
+                        builder: (context) => ScheduleView(
+                            schedule: schedule.toString().split("◌◌◞◌◌◌"))),
                   );
                 } else {
                   const snackBar = SnackBar(
@@ -63,16 +66,20 @@ class _OpenViewState extends State<OpenView> {
                         textScaleFactor: 1.7,
                         style: TextStyle(
                             color: isopen == null
-                                ? Colors.black
+                                ? darkmode
+                                    ? Colors.white
+                                    : Colors.black
                                 : isopen == true
                                     ? Colors.green
                                     : const Color.fromARGB(255, 255, 0, 0),
                             fontWeight: FontWeight.w400),
                       ).frosted(
                         blur: 15,
+                        frostColor:
+                            darkmode ? Colors.black! : Colors.grey[100]!,
                         borderRadius: BorderRadius.circular(10),
-                        padding:
-                            EdgeInsets.only(left: 6, right: 6, top: 2, bottom: 2),
+                        padding: EdgeInsets.only(
+                            left: 6, right: 6, top: 2, bottom: 2),
                       ))),
             ),
             Spacer(),
@@ -93,9 +100,13 @@ class _OpenViewState extends State<OpenView> {
               },
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Icon(Icons.newspaper).frosted(
+                child: Icon(
+                  Icons.newspaper,
+                  color: darkmode ? Colors.white : Colors.grey[800],
+                ).frosted(
                   blur: 15,
                   borderRadius: BorderRadius.circular(10),
+                  frostColor: darkmode ? Colors.black! : Colors.grey[100]!,
                   padding:
                       EdgeInsets.only(left: 6, right: 6, top: 2, bottom: 2),
                 ),

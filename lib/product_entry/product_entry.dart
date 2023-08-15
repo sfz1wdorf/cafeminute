@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 import "package:cafeminute/product_entry/product_entry_components.dart";
 
+import "../API/utils.dart";
+
 class ProductEntry extends StatefulWidget {
   final String title;
   final String prize;
@@ -9,7 +11,7 @@ class ProductEntry extends StatefulWidget {
   final String allergenics;
   final String sale;
 
- ProductEntry(
+  ProductEntry(
       {required this.title,
       required this.prize,
       required this.allergenics,
@@ -28,14 +30,18 @@ class _ProductEntryState extends State<ProductEntry> {
         padding: const EdgeInsets.all(8),
         child: Container(
             decoration: BoxDecoration(
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: darkmode
+                    ? Colors.grey[900]
+                    : Color.fromARGB(255, 255, 255, 255),
                 border: Border.all(
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: darkmode != null && darkmode
+                      ? Colors.transparent!
+                      : const Color.fromARGB(255, 255, 255, 255),
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: darkmode ? Colors.grey[900]! : Colors.grey[400]!,
                     spreadRadius: 1,
                     blurRadius: 7,
                     offset: Offset(0, 3), // changes position of shadow

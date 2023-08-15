@@ -4,7 +4,6 @@ import 'package:cafeminute/API/utils.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 
-
 initNots() {
   AwesomeNotifications().initialize(
       // set the icon to null if you want to use the default app icon
@@ -34,27 +33,31 @@ initNots() {
     }
   });
 }
-sendNotifications() async{
+
+sendNotifications() async {
   print("nots called");
   var notsServer = await getHttp("$url/fetchnotification", "", "GET");
-  if(notsServer.toString() != "nv"){
+  if (notsServer.toString() != "nv") {
     print(notsServer.toString());
-  var fetchedNots = fetchNot(notsServer.toString());
-  AwesomeNotifications().createNotification(
-  content: NotificationContent(
-    //id:heading;id:content;id:date;id:time;id:dateformated;
-      id: 10,
-      channelKey: 'basic_channel',
-      title: fetchedNots[0],
-      body: fetchedNots[1],
-      actionType: ActionType.Default
-  )
-);
+    var fetchedNots = fetchNot(notsServer.toString());
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            //id:heading;id:content;id:date;id:time;id:dateformated;
+            id: 10,
+            channelKey: 'basic_channel',
+            title: fetchedNots[0],
+            body: fetchedNots[1],
+            actionType: ActionType.Default));
   }
 }
 
-List<String> fetchNot(String nots){
-var notsUnclean = nots.split(";");
-var notsCleaned = [unWhiteSpace(notsUnclean[0].substring(6,unWhiteSpace(notsUnclean[0]).length)),unWhiteSpace(notsUnclean[1].substring(6,unWhiteSpace(notsUnclean[1]).length))];
-return notsCleaned;
+List<String> fetchNot(String nots) {
+  var notsUnclean = nots.split(";");
+  var notsCleaned = [
+    unWhiteSpace(
+        notsUnclean[0].substring(6, unWhiteSpace(notsUnclean[0]).length)),
+    unWhiteSpace(
+        notsUnclean[1].substring(6, unWhiteSpace(notsUnclean[1]).length))
+  ];
+  return notsCleaned;
 }

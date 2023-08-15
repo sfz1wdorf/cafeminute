@@ -4,6 +4,8 @@ String unWhiteSpace(String stringToCheck) {
   return reverse(unWhiteSpaceSub(reverse(unWhiteSpaceSub(stringToCheck))));
 }
 
+bool darkmode = true;
+
 unWhiteSpaceSub(String stringToCheck) {
   var finished = false;
   while (finished == false) {

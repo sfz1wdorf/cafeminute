@@ -35,16 +35,18 @@ class _NewsViewState extends State<NewsView> {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+            icon: Icon(Icons.arrow_back_ios,
+                color: darkmode ? Colors.white : Colors.black),
             highlightColor: Colors.transparent,
             splashColor: Colors.transparent,
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: const Text(
+          title: Text(
             "News",
             textScaleFactor: 1.2,
+            style: TextStyle(color: darkmode ? Colors.white : Colors.black),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: darkmode ? Colors.grey[900] : Colors.white,
           shadowColor: Colors.transparent,
           foregroundColor: Colors.black,
         ),

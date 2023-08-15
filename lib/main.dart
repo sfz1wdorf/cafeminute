@@ -30,6 +30,8 @@ class _MinuteState extends State<Minute> {
         //term
       },
       child: MaterialApp(
+        theme:
+            ThemeData(scaffoldBackgroundColor: Color.fromARGB(255, 48, 48, 48)),
         home: Material(child: Main()),
       ),
     );
