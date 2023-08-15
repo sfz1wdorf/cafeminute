@@ -1,7 +1,12 @@
+import 'dart:ui';
+
+import 'package:cafeminute/API/utils.dart';
 import 'package:cafeminute/product_view.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../main.dart';
 import 'fetcher.dart';
+
 var news;
 var isopen;
 var schedule;
@@ -11,7 +16,7 @@ init() async {
   var validation;
   try {
     validation = await getHttp("$url/", {}, "GET");
-    if(validation == null){
+    if (validation == null) {
       isConnected = false;
       return "failed";
     }
@@ -33,6 +38,7 @@ init() async {
   isConnected = false;
   return "failed";
 }
+
 //s
 Future<bool> checkConnection() async {
   var validation;
@@ -43,15 +49,14 @@ Future<bool> checkConnection() async {
   }
 
   if (validation.toString() == "Root Route!") {
-    if(isConnected == false){
-    isConnected = true;
-    init();
-    }else{
-    isConnected = true;
+    if (isConnected == false) {
+      isConnected = true;
+      init();
+    } else {
+      isConnected = true;
     }
-  return true;
+    return true;
   }
   isConnected = false;
   return false;
 }
-

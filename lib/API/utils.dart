@@ -5,7 +5,7 @@ String unWhiteSpace(String stringToCheck) {
   return reverse(unWhiteSpaceSub(reverse(unWhiteSpaceSub(stringToCheck))));
 }
 
-bool darkmode = true;
+bool darkmode = false;
 
 unWhiteSpaceSub(String stringToCheck) {
   var finished = false;
@@ -39,6 +39,7 @@ String reverse(String s) {
 
   return sb.toString();
 }
+
 Future<void> _launchUrl(_url) async {
   if (!await launchUrl(_url)) {
     throw Exception('Could not launch $_url');

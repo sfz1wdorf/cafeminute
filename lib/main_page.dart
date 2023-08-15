@@ -59,9 +59,9 @@ class _MainState extends State<Main> {
                 width: MediaQuery.of(context).size.width,
                 child: Container(
                     decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 255, 255, 255),
+                        color: darkmode ? Colors.grey[900] : Colors.white,
                         border: Border.all(
-                          color: const Color.fromARGB(255, 255, 255, 255),
+                          color: darkmode ? Colors.grey[900]! : Colors.white,
                         ),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10)),
