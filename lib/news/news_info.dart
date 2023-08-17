@@ -70,7 +70,7 @@ class _NewsInfoState extends State<NewsInfo> {
                       : AutoSizeText(
                           widget.heading,
                           textScaleFactor: 1.5,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold, color: darkmode ? Colors.white : Colors.black),
                           maxLines: 2,
                         )),
             ),
@@ -99,7 +99,12 @@ class _NewsInfoState extends State<NewsInfo> {
                       visible: widget.isevent,
                       child: Checkbox(
                         value: isChanged,
-                        shape: CircleBorder(),
+                        shape:  CircleBorder(
+                        ),
+                          side: MaterialStateBorderSide.resolveWith(
+      (states) => BorderSide(width: 1.0, color:darkmode ? Colors.white : Colors.black),
+  ),
+
                         checkColor: Colors.green,
                         activeColor: darkmode ? Colors.grey[900] : Colors.white,
                         onChanged: (bool? value) async {

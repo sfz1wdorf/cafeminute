@@ -69,7 +69,7 @@ class _NewsEntryState extends State<NewsEntry> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: darkmode ? Colors.white : Colors.black),
-                        maxLines: 2,
+                        maxLines: 3,
                       ),
                       Spacer(),
                       Visibility(
