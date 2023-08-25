@@ -57,29 +57,35 @@ class _OpenViewState extends State<OpenView> {
                   alignment: FractionalOffset.bottomLeft,
                   child: Padding(
                       padding: EdgeInsets.all(10.0),
-                      child: Text(
-                        isopen == null
-                            ? "..."
-                            : isopen == true
-                                ? "○ Geöffnet"
-                                : "○ Geschlossen",
-                        textScaleFactor: 1.7,
-                        style: TextStyle(
-                            color: isopen == null
-                                ? darkmode
-                                    ? Colors.white
-                                    : Colors.black
+                      child: Row(
+                        children: [
+                          Text(
+                            isopen == null
+                                ? "..."
                                 : isopen == true
-                                    ? Colors.green
-                                    : const Color.fromARGB(255, 255, 0, 0),
-                            fontWeight: FontWeight.w400),
-                      ).frosted(
-                        blur: 15,
-                        frostColor:
-                            darkmode ? Colors.black! : Colors.grey[100]!,
-                        borderRadius: BorderRadius.circular(10),
-                        padding: EdgeInsets.only(
-                            left: 6, right: 6, top: 2, bottom: 2),
+                                    ? "○ Geöffnet"
+                                    : "○ Geschlossen",
+                            textScaleFactor: 1.7,
+                            style: TextStyle(
+                                color: isopen == null
+                                    ? darkmode
+                                        ? Colors.white
+                                        : Colors.black
+                                    : isopen == true
+                                        ? Colors.green
+                                        : const Color.fromARGB(255, 255, 0, 0),
+                                fontWeight: FontWeight.w400),
+                          ).frosted(
+                            blur: 15,
+                            frostColor:
+                                darkmode ? Colors.black! : Colors.grey[100]!,
+                            borderRadius: BorderRadius.circular(10),
+                            padding: EdgeInsets.only(
+                                left: 6, right: 6, top: 2, bottom: 2),
+                          ),
+                        Padding(padding: EdgeInsets.only(left: 5),  child: Visibility(visible:isopen, child:Icon(Icons.circle, color: crowded == 1 ? Colors.green : crowded == 2 ? Colors.yellow : Colors.red,)))
+          ],
+
                       ))),
             ),
             Spacer(),

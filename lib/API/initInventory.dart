@@ -9,6 +9,7 @@ import 'fetcher.dart';
 
 var news;
 var isopen;
+var crowded;
 var schedule;
 var isConnected = false;
 var newsIDs;
@@ -30,6 +31,8 @@ init() async {
     newsIDs = await fetchNewsIDs(url);
     news = await getHttp(url + "/getallnews", {}, "GET");
     schedule = await getHttp(url + "/getschedule", {}, "GET");
+    crowded = int.parse((await getHttp(url + "/getcustomers", {}, "GET")).toString());
+    print(crowded);
     isConnected = true;
     var openRaw = await getHttp(url + "/isopen", {}, "GET");
     isopen = openRaw.toString().toLowerCase() == 'true';
