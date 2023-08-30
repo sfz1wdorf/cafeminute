@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cafeminute/API/fetcher.dart';
 import 'package:cafeminute/news/news_view.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
@@ -112,22 +113,22 @@ class _NewsInfoState extends State<NewsInfo> {
                           if (value != false) {
                             addpart = await getHttp(
                                 "$url/addparticipant",
-                                {
+                                FormData.fromMap({
                                   "pswd":
-                                      "CDSLLM0qL&KS2RjhgVSLw^hSvehR0UlPZ6wOz!CMS9x2oJELmU",
+                                      "123",
                                   "id": "${widget.id}"
-                                },
+                                }),
                                 "PATCH");
                             registrations.add(widget.id);
                             storeRegistrations();
                           } else {
                             addpart = await getHttp(
                                 "$url/removeparticipant",
-                                {
+                                FormData.fromMap({
                                   "pswd":
-                                      "CDSLLM0qL&KS2RjhgVSLw^hSvehR0UlPZ6wOz!CMS9x2oJELmU",
+                                      "123",
                                   "id": "${widget.id}"
-                                },
+                                }),
                                 "PATCH");
                             registrations.remove(widget.id);
                             storeRegistrations();

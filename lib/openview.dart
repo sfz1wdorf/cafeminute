@@ -36,30 +36,30 @@ class _OpenViewState extends State<OpenView> {
             fit: BoxFit.cover),
         Row(
           children: [
-            GestureDetector(
-              onTap: () {
-                if (isConnected == true && schedule.runtimeType != DioError) {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                        builder: (context) => ScheduleView(
-                            schedule: schedule.toString().split("◌◌◞◌◌◌"))),
-                  );
-                } else {
-                  const snackBar = SnackBar(
-                    content: Text('Keine Verbindung zum Server möglich!'),
-                  );
+            Align(
+              alignment: FractionalOffset.bottomLeft,
+              child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                      children: [
+                        GestureDetector(
+                                           onTap: () {
+                    if (isConnected == true && schedule.runtimeType != DioError) {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => ScheduleView(
+                                schedule: schedule.toString().split("◌◌◞◌◌◌"))),
+                      );
+                    } else {
+                      const snackBar = SnackBar(
+                        content: Text('Keine Verbindung zum Server möglich!'),
+                      );
 
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                }
-              },
-              child: Align(
-                  alignment: FractionalOffset.bottomLeft,
-                  child: Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Row(
-                        children: [
-                          Text(
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
+                  },
+                          child: Text(
                             isopen == null
                                 ? "..."
                                 : isopen == true
@@ -83,10 +83,30 @@ class _OpenViewState extends State<OpenView> {
                             padding: EdgeInsets.only(
                                 left: 6, right: 6, top: 2, bottom: 2),
                           ),
-                        Padding(padding: EdgeInsets.only(left: 5),  child: Visibility(visible:isopen, child:Icon(Icons.circle, color: crowded == 1 ? Colors.green : crowded == 2 ? Colors.yellow : Colors.red,)))
+                        ),
+                      Padding(padding: EdgeInsets.only(left: 5),
+                      child: Visibility(visible:isopen && crowded != 1,
+                      child:GestureDetector(
+
+                        onTap:() {
+                        var snackBar = SnackBar(
+                        content: Text(crowded == 3 ? 'Café stark besucht' : 'Café überdurchschnittlich besucht'),
+                        );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        },
+                        child: Icon(Icons.warning_amber, color: crowded == 1 ? Colors.green : crowded == 2 ? Colors.yellow : Colors.red,))).frosted(
+                                          blur: 15,
+                            frostColor:
+                                darkmode ? Colors.black : Colors.grey[100]!,
+                            borderRadius: BorderRadius.circular(10),
+                            padding: EdgeInsets.only(
+                                left: 3, right: 3, top: 3, bottom: 3),
+
+                        ))
           ],
 
-                      ))),
+                    ),
+              ),
             ),
             Spacer(),
             GestureDetector(
@@ -112,7 +132,7 @@ class _OpenViewState extends State<OpenView> {
                 ).frosted(
                   blur: 15,
                   borderRadius: BorderRadius.circular(10),
-                  frostColor: darkmode ? Colors.black! : Colors.grey[100]!,
+                  frostColor: darkmode ? Colors.black : Colors.grey[100]!,
                   padding:
                       EdgeInsets.only(left: 6, right: 6, top: 2, bottom: 2),
                 ),

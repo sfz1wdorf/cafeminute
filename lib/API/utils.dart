@@ -1,4 +1,3 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 String unWhiteSpace(String stringToCheck) {
@@ -46,14 +45,3 @@ Future<void> _launchUrl(_url) async {
   }
 }
 
-notify() async {
-  AwesomeNotifications().createNotification(
-      content: NotificationContent(
-          id: 10,
-          channelKey: 'basic_channel',
-          title: 'Simple Notification',
-          body: 'Simple body',
-          actionType: ActionType.Default),
-      schedule: NotificationCalendar.fromDate(
-          date: DateTime.now().add(const Duration(seconds: 100))));
-}

@@ -25,7 +25,9 @@ init() async {
     isConnected = false;
     return "failed";
   }
+
   if (validation.toString() == "Root Route!") {
+    print("here");
     products = (await getHttp(url + "/getproducts", {}, "GET")).toString();
     productIDs = await fetchProductIDs(url);
     newsIDs = await fetchNewsIDs(url);

@@ -10,7 +10,6 @@ void main() async {
   await init();
   //print("start");
   runApp(Minute());
-  initNots();
   getRegistrations();
 }
 

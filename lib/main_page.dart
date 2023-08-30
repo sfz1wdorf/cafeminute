@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cafeminute/API/nots.dart';
 import 'package:cafeminute/openview.dart';
 import 'package:cafeminute/product_view.dart';
@@ -23,12 +22,6 @@ class _MainState extends State<Main> {
   void initState() {
     super.initState();
     Timer RefreshTimer;
-    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-      if (!isAllowed) {
-        //AwesomeNotifications().requestPermissionToSendNotifications();
-        _showNotificationDialog(); //TODO: Thoroughly test if the dialog is shown by the system anyway
-      }
-    });
     checkConnection();
     setState(() {});
     RefreshTimer = Timer.periodic(const Duration(seconds: 30), (Timer t) {
@@ -40,7 +33,6 @@ class _MainState extends State<Main> {
       setState(() {});
     });
     RefreshTimer = Timer.periodic(const Duration(seconds: 60), (Timer t) {
-      sendNotifications();
     });
   }
 
@@ -141,7 +133,6 @@ class _MainState extends State<Main> {
             TextButton(
               child: const Text('Akzeptieren'),
               onPressed: () {
-                AwesomeNotifications().requestPermissionToSendNotifications();
                 Navigator.of(context).pop();
               },
             ),
