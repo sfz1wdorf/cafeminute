@@ -1,16 +1,25 @@
+import 'package:cafeminute/firebase_options.dart';
 import 'package:cafeminute/news/news_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'API/initInventory.dart';
 import 'API/utils.dart';
 import "main_page.dart";
 import 'API/nots.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   await init();
   //print("start");
-  runApp(Minute());
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
   getRegistrations();
+  runApp(Minute());
 }
 
 var url = "http://localhost:1312";
