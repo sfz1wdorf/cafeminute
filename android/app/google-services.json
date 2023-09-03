@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "147831377461",
+    "project_id": "cafeminute-24137",
+    "storage_bucket": "cafeminute-24137.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147831377461:android:829b7009701ffb93feab7c",
+        "android_client_info": {
+          "package_name": "com.example.cafeminute"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "147831377461-l9fshus2uh4bk06vi7omobj5v9rblr70.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjdcrdyiM5QNZbCvW_oz36-S6wQwptFME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "147831377461-l9fshus2uh4bk06vi7omobj5v9rblr70.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
