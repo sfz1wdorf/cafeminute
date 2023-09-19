@@ -13,10 +13,10 @@ void main() async {
   await init();
   getRegistrations();
   runApp(Minute());
-    await Firebase.initializeApp(
-  name: "cafeminute",
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+  await Firebase.initializeApp(
+    name: "cafeminute",
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 var url = "http://minutebackend.hopto.org:1312";

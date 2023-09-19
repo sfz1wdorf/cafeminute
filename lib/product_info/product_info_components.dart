@@ -77,7 +77,8 @@ class InfoAllergenics extends StatelessWidget {
                 new TextSpan(
                     text: ' $allergenics',
                     style: new TextStyle(
-                        fontWeight: FontWeight.normal, color: Colors.black)),
+                        fontWeight: FontWeight.normal,
+                        color: darkmode ? Colors.white : Colors.black)),
               ],
             ),
           ),
